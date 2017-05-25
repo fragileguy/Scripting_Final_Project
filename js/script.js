@@ -1,7 +1,9 @@
 var gameWrapper = document.querySelector('#game');
-if (!gameWrapper.classList.contains('hide')) {
+var form=document.querySelector('#form');
+if (!gameWrapper.classList.contains('hide') && !form.classList.contains('hide')) {
     gameWrapper.classList.remove('center');
     gameWrapper.classList.add('hide');
+    form.classList.add('hide');
 }
 var lose = false;
 
@@ -42,20 +44,6 @@ document.getElementById("start_game").onclick = function () {
         var correct = document.getElementsByClassName("answer");
 
     } //end onclick function start game
-
-	showGame();
-	game.readTextFile();
-	game.getData(); 
-	game.startTimer();
-	if (lose) {
-		showElement();
-	}
-	
-	
-	
-	var correct = document.getElementsByClassName("answer");
-	
-} //end onclick function start game
 
 window.onload = function () {
 	
