@@ -1,5 +1,6 @@
 var gameWrapper = document.querySelector('#game');
 var form = document.querySelector('#form');
+var rules= document.querySelector('#rules');
 if (!gameWrapper.classList.contains('hide')) {
     gameWrapper.classList.remove('center');
     gameWrapper.classList.add('hide');
@@ -28,7 +29,11 @@ function hideGame() {
     if (!gameWrapper.classList.contains('hide')) {
         gameWrapper.classList.add('hide');
         gameWrapper.classList.remove('center');
-    }
+    } 
+	if (!rules.classList.contains('hide')) {
+            rules.classList.add('hide');
+        }
+	
 } //end hide game
 
 document.getElementById("start_game").onclick = function () {
@@ -48,6 +53,13 @@ document.getElementById("start_game").onclick = function () {
         var correct = document.getElementsByClassName("answer");
 
     } //end onclick function start game
+document.getElementById("butt_rules").onclick = function(){
+	 if (rules.classList.contains('hide')) {
+            rules.classList.remove('hide');
+        }
+		
+}
+
 
 window.onload = function () {
 
@@ -93,7 +105,7 @@ var game = {
     questionHolder: document.getElementsByClassName("question"),
     questionArray: [],
     moneyHolder: document.getElementsByClassName('moneyTree'),
-    level: 8,
+    level:8,
     moneyLevel: 9,
     moneyBank: document.getElementsByClassName('bank'),
     popup: document.getElementById('gameinfoHolder'),
@@ -253,7 +265,7 @@ var game = {
 
 
         var x = setInterval(function () {
-
+			
             var minutes = game.time / 60;
             var seconds = game.time % 60;
 
@@ -271,8 +283,10 @@ var game = {
 
             // If the count down is over, write some text 
             if (game.time == -1) {
+				alert(game.level);
                 clearInterval(x);
                 this.round = 2;
+				game.level=7;
                 game.showRoundTwo();
                 game.readTextFile();
                 game.getData();
@@ -332,7 +346,7 @@ window.onclick = function (event) {
 		beep.src="Music/gsound.mp3";
 		
 			
-		beep.autoplay = true;
+		// beep.autoplay = true;
 		
 	     function playm(){		
 			beep.autoplay = false;
