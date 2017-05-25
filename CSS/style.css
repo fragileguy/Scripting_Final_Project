@@ -11,14 +11,11 @@
         src: local('Racing Sans One'), local('RacingSansOne-Regular'), /*url(http://really-long-url.woff) format('woff');*/
     }
     body {
-<<<<<<< HEAD
-/*        background: url(../Images/bg.jpg) no-repeat center fixed;*/
-=======
+
         /* background: url(../Images/bg.jpg) no-repeat center fixed; */
-        background: white;
->>>>>>> origin/master
         background-size: cover;
     }
+
     .border {
         border: solid;
         border-color: black;
@@ -53,8 +50,34 @@
         position: relative;
         cursor: pointer;
     }
-    /*game*/
-    
+#form{
+    top: 10%;
+    position: relative;
+    width: 80%;
+    height: 50%;
+}
+#form > h2{
+    margin-top: 2%;
+}
+#form > div, h2{
+    height: 15%;
+    width: inherit;
+/*    border: solid;*/
+    margin-top: 5%
+}
+#form > div > input{
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    width: 50%;
+    outline: none;
+    margin-left: 2%;  
+}
+#form > div > span{
+    margin-left: 2%;
+}
+
+/*------------game--------*/
     #game {
         /*display: none;*/
         position: relative;

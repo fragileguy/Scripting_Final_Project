@@ -32,7 +32,7 @@ document.getElementById("start_game").onclick = function () {
         showGame();
         game.readTextFile();
         game.getData(); 
-         game.startTimer();
+        game.startTimer();
         if (lose) {
             showElement();
         }
