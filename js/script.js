@@ -219,6 +219,8 @@ var game = {
         return qasked;
 	},
 	
+	
+	
     /*Function times needs to be worked on*/
     startTimer: function () {
 
@@ -243,7 +245,7 @@ var game = {
 				// If the count down is over, write some text 
 				if (parseInt(time)< 0) {
 					clearInterval(x);
-					document.getElementById("time").innerHTML = "EXPIRED";
+					game.youLose();
 				}
 			}, 1000);
        
@@ -251,45 +253,9 @@ var game = {
 
     },
 	
-	
-    countDown: function () {
-        var setTime = 60 * .1,
-            display = document.querySelector('#time');
-        game.startTimer(setTime, display);
-
-        var time = 10;
-        game.x = setInterval(function () {
-			
-            var minutes = time / 60;
-            var seconds = time % 60;
-			
-            if (seconds == 0) {
-                // Output the result in an element with id="demo"
-                document.getElementById("time").innerHTML = parseInt(minutes) + ":" + seconds + "0";
-                time--;
-				
-				} else {
-                // Output the result in an element with id="demo"
-                document.getElementById("time").innerHTML = parseInt(minutes) + ":" + seconds;
-                time--;
-				
-			}
-			
-            // If the count down is over, write some text 
-            if (time == -1) {
-                game.stopTimer();
-				game.youLose();
-			}
-		}, 1000)
-		
-		
-		
-	},
-	
     stopTimer: function () {
-
-        clearInterval(game.x);
-        
+		clearInterval(game.x);
+      
 	},
 	
 	
