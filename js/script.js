@@ -268,12 +268,17 @@ var game = {
                 game.time--;
 
             }
-
+           
             // If the count down is over, write some text 
             if (game.time == -1) {
                 clearInterval(x);
-                this.round = 2;
+                
+                game.round = 2;
+                
+                game.level=7;
                 game.showRoundTwo();
+                 game.moneyHolder=document.getElementsByClassName('bank2');
+                alert("Bank 2 "+game.moneyHolder.length);
                 game.readTextFile();
                 game.getData();
                 game.time=90;
@@ -332,7 +337,7 @@ window.onclick = function (event) {
 		beep.src="Music/gsound.mp3";
 		
 			
-		beep.autoplay = true;
+		//beep.autoplay = true;
 		
 	     function playm(){		
 			beep.autoplay = false;
