@@ -88,6 +88,7 @@ if (typeof (Storage) !== "undefined") {
 }
 //object class start
 var game = {
+	time:10,
 	x:"",
     question: "",
     choice: "",
@@ -239,26 +240,26 @@ var game = {
     /*Function times needs to be worked on*/
     startTimer: function () {
 
-	var time=10;
+	
 	var x = setInterval(function() {
 				
-				var minutes = time/60;
-				var seconds = time % 60;
+				var minutes = game.time/60;
+				var seconds = game.time % 60;
 				
 				if(seconds == 0){
 					// Output the result in an element with id="demo"
 					document.getElementById("time").innerHTML = parseInt(minutes)+":"+seconds+"0";
-					time --;
+					game.time --;
 					
 				}else{
 					// Output the result in an element with id="demo"
 						document.getElementById("time").innerHTML = parseInt(minutes)+":"+seconds;
-						time --;
+						game.time --;
 				
 				}
 						
 				// If the count down is over, write some text 
-				if (parseInt(time)< 0) {
+				if (game.time == -1) {
 					clearInterval(x);
 					game.youLose();
 				}
