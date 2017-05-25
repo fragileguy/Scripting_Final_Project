@@ -29,6 +29,7 @@ document.getElementById("start_game").onclick = function () {
         game.readTextFile();
         game.getData();
 		game.startTimer();
+		
         
     if(lose){
         showElement();
@@ -166,7 +167,6 @@ var game = {
     /*ifCorrect function accepts two args question from on file (its answer) & userChoice if user choice matches on file, money is added, user levels up, new question shown*/
     ifCorrect: function (question, userChoice) {
         var bank = 0;
-        var addTime = 60 * .3;
         //        alert("question about to be asked if correct: " + question)
         if (question == userChoice) {
             alert("you are correct");
@@ -182,6 +182,7 @@ var game = {
                 this.level = (parseInt(this.level) - 1);
 
                 game.getData();
+				game.startTimer();
             }
         } else {
             alert("wrong bro go home");
