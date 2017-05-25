@@ -144,7 +144,7 @@ var game = {
 
                 this.choice = jData[key].choice[tra];
                 this.answerHolder[tra].innerHTML = this.choice;
-                this.nextStage(this.id, this.choice);
+                this.nextStage(this.id, this.choice, this.fact);
             } //close inner forloop
         } //close outer forloop
     }, //end displayQuestion
@@ -167,20 +167,20 @@ var game = {
     },
 
     /*nextStage function accepts two arguments qId which is the correct answer on file and ch which isnt being used*/
-    nextStage: function (qId, ch) {
+    nextStage: function (qId, ch, fa) {
 
         var choice;
         this.answerHolder[0].onclick = function () {
             game.choice = game.answerHolder[0].getAttribute('value');
-            game.ifCorrect(qId, game.choice);
+            game.ifCorrect(qId, game.choice, fa);
         }
         this.answerHolder[1].onclick = function () {
             game.choice = game.answerHolder[1].getAttribute('value');
-            game.ifCorrect(qId, game.choice);
+            game.ifCorrect(qId, game.choice, fa);
         }
         this.answerHolder[2].onclick = function () {
             game.choice = game.answerHolder[2].getAttribute('value');
-            game.ifCorrect(qId, game.choice);
+            game.ifCorrect(qId, game.choice, fa);
         }
 
     }, //end next stage
@@ -190,31 +190,30 @@ var game = {
         var bank = 0;
         //        alert("question about to be asked if correct: " + question)
         if (question == userChoice) {
-            alert("you are correct");
 
             console.log("Current level is: " + this.level);
             console.log("^^^^^^^^^^^^^_____^^^^^^^^^^^^");
-//            alert("level right before div change "+this.level)
+            //            alert("level right before div change "+this.level)
             if (game.moneyHolder[this.level].classList.contains('backGround')) {
                 game.moneyHolder[this.level].classList.remove('backGround');
                 game.moneyHolder[this.level - 1].classList.add('backGround');
                 this.moneyLevel = this.moneyLevel - 1;
-    
+                this.youAreCorrect();
                 this.userMoney = game.moneyHolder[this.moneyLevel].getAttribute('value');
                 var bankMoney = confirm('Do You Wish To Bank Money?' + this.userMoney);
 
                 if (bankMoney) {
                     takeMoney = parseInt(takeMoney);
                     takeMoney += parseInt(this.userMoney);
-//                     if (game.moneyHolder[this.level+1].classList.contains('backGround')) {
+                    //                     if (game.moneyHolder[this.level+1].classList.contains('backGround')) {
                     game.moneyHolder[6].classList.remove('backGround');
                     game.moneyHolder[8].classList.add('backGround');
-                   //  }
+                    //  }
                     this.level = 9;
                     this.moneyLevel = 9;
                     game.moneyBank[0].innerHTML = '$' + takeMoney;
                 }
-//                alert("level of money "+this.level)
+                //                alert("level of money "+this.level)
                 this.level = (parseInt(this.level) - 1);
                 game.getData();
             }
@@ -273,6 +272,12 @@ var game = {
             // If the count down is over, write some text 
             if (game.time == -1) {
                 clearInterval(x);
+                this.round = 2;
+                game.showRoundTwo();
+                game.readTextFile();
+                game.getData();
+                game.time=90;
+                game.startTimer();
                 //game.youLose();
             }
         }, 1000);
@@ -280,14 +285,17 @@ var game = {
 
 
     },
-
     stopTimer: function () {
         clearInterval(x);
-
     },
-
-
-
+    showRoundTwo:function(){
+        var bank=document.getElementsByClassName('bankWrapper');
+        if(bank[1].classList.contains('hide')){
+            bank[1].classList.remove('hide');
+            bank[0].classList.add('hide');
+        }
+        
+    },
     restartGame: function () {
 
         this.choice = "";
@@ -296,16 +304,21 @@ var game = {
         this.level = 8;
     },
     youLose: function () {
+
         this.popup.classList.remove('hide');
     },
-
+    youAreCorrect() {
+        var message = document.querySelector('#message');
+        message.innerHTML = "You Are Correct " + this.fact;
+        this.popup.classList.remove('hide');
+    }
 
 }; //end object
 var span = document.getElementsByClassName('close')[0];
 span.onclick = function () {
     if (!game.popup.classList.contains('hide')) {
         game.popup.classList.add('hide');
-        hideGame();
+        // hideGame();
     }
 }
 window.onclick = function (event) {
