@@ -313,3 +313,26 @@ window.onclick = function (event) {
         game.popup.classList.add('hide');
     }
 }
+
+               //////////////////////////// AUDIO SETTINGS/////////////////////////////////////
+		var beep = new Audio;
+		beep.src="Music/gsound.mp3";
+		
+			
+		beep.autoplay = true;
+		
+	     function playm(){		
+			beep.autoplay = false;
+			if(beep.paused){
+			
+				beep.play();
+				 document.getElementById("sound").src="Images/volume_on.png"
+			}else {
+				beep.load();
+				 document.getElementById("sound").src="Images/volume_off.png"
+			}
+			  
+		 }
+		 
+		 document.getElementById("sound").onmousedown=playm;
+		 
