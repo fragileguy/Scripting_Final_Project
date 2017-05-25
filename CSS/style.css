@@ -11,7 +11,8 @@
         src: local('Racing Sans One'), local('RacingSansOne-Regular'), /*url(http://really-long-url.woff) format('woff');*/
     }
     body {
-        background: url(../Images/bg.jpg) no-repeat center fixed;
+        /* background: url(../Images/bg.jpg) no-repeat center fixed; */
+        background: white;
         background-size: cover;
     }
     .border {

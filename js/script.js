@@ -28,6 +28,7 @@ document.getElementById("start_game").onclick = function () {
         hideElement();
         game.readTextFile();
         game.getData();
+		game.startTimer();
         
     if(lose){
         showElement();
@@ -66,6 +67,7 @@ if (typeof (Storage) !== "undefined") {
 }
 //object class start
 var game = {
+	
     question: "",
     choice: "",
     id: "",
@@ -75,7 +77,6 @@ var game = {
     moneyHolder: document.getElementsByClassName('moneyTree'),
     level: 8,
     moneyBank: document.getElementsByClassName('bank'),
-    time: "1:00",
     popup: document.getElementById('gameinfoHolder'),
 
     /*function using http protocol to get and reads json file raw stored locally, this function is
@@ -210,26 +211,39 @@ var game = {
 
         return qasked;
     },
+	
     /*Function times needs to be worked on*/
-    startTimer: function (duration, display) {
-        var timer = duration,
-            minutes, seconds;
-        setInterval(function () {
-            minutes = parseInt(timer / 60, 10)
-            seconds = parseInt(timer % 60, 10);
-
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            display.textContent = minutes + ":" + seconds;
-
-            if (--timer == 0) {
-                timer = duration;
-                alert("Game Over");
-            }
-        }, 1000);
+    startTimer: function () {
+	var time=10;
+	var x = setInterval(function() {
+				
+				var minutes = time/60;
+				var seconds = time % 60;
+				
+				if(seconds == 0){
+					// Output the result in an element with id="demo"
+					document.getElementById("time").innerHTML = parseInt(minutes)+":"+seconds+"0";
+					time --;
+					
+				}else{
+					// Output the result in an element with id="demo"
+						document.getElementById("time").innerHTML = parseInt(minutes)+":"+seconds;
+						time --;
+				
+				}
+						
+				// If the count down is over, write some text 
+				if (parseInt(time)< 0) {
+					clearInterval(x);
+					document.getElementById("time").innerHTML = "EXPIRED";
+				}
+			}, 1000);
+       
+      
 
     },
+	
+	
     countDown: function () {
         var setTime = 60 * .1,
             display = document.querySelector('#time');
