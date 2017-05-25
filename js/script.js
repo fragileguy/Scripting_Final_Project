@@ -280,14 +280,23 @@ var game = {
                 game.time--;
 
             }
-
+           
             // If the count down is over, write some text 
             if (game.time == -1) {
 				alert(game.level);
                 clearInterval(x);
+<<<<<<< HEAD
                 this.round = 2;
 				game.level=7;
+=======
+                
+                game.round = 2;
+                
+                game.level=7;
+>>>>>>> origin/master
                 game.showRoundTwo();
+                 game.moneyHolder=document.getElementsByClassName('bank2');
+                alert("Bank 2 "+game.moneyHolder.length);
                 game.readTextFile();
                 game.getData();
                 game.time=90;
@@ -346,7 +355,11 @@ window.onclick = function (event) {
 		beep.src="Music/gsound.mp3";
 		
 			
+<<<<<<< HEAD
 		// beep.autoplay = true;
+=======
+		//beep.autoplay = true;
+>>>>>>> origin/master
 		
 	     function playm(){		
 			beep.autoplay = false;
