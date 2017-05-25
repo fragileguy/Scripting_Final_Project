@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <title>The Weakest Link Trinidad</title>
+   
+  </head>
+  <body>
+   <button id="sound" > yess</button>
+   <button id="sound1" > yess</button>
+  </body>
+  <script>
+	  
+        
+		var beep = new Audio;
+		beep.src="gsound.mp3";
+	     function playm(){		
+			
+			if(beep.paused){
+				beep.play();
+			}else {
+				beep.load();
+			}
+			
+			  
+		 }
+		
+		 document.getElementById("sound").onmousedown=playm;
+   </script>
+  
+</html>
