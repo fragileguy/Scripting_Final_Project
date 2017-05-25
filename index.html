@@ -6,8 +6,16 @@
 
   </head>
   <body>
-    <div class="container border">
-      <figure id="volume" class="border">
+   <section id="gameinfoHolder" class="border centerTag fadeIn hide">
+         <div class="closeHolder">
+             <span class="close">&times;</span>
+         </div>
+          <div class="center">
+              SORRY, YOU HAVE LOSE
+          </div>
+    </section>
+    <div id="container" class="container border">
+      <figure id="volume" class="">
         <img src="Images/volume_on.png" alt="volume_on">
         <div>Time to answer question <span id="time">02:00</span> minutes!</div>
       </figure>
@@ -43,14 +51,7 @@
         <input type="button" id="start_game" class="" value="START GAME" />
         <input type="button" class="" VALUE="RULES" id="rules"/>
       </section>
-      <section id="gameinfoHolder" class="border centerTag fadeIn hide">
-         <div class="closeHolder">
-             <span class="close">&times;</span>
-         </div>
-          <div class="center">
-              SORRY, YOU HAVE LOSE
-          </div>
-      </section>
+      
     </div>
     
     <script src="js/script.js"></script>

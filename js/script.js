@@ -1,10 +1,12 @@
 var gameWrapper = document.querySelector('#game');
-gameWrapper.classList.remove('center');
-gameWrapper.classList.add('hide');
-var lose=false;
+if (!gameWrapper.classList.contains('hide')) {
+    gameWrapper.classList.remove('center');
+    gameWrapper.classList.add('hide');
+}
+var lose = false;
 
-function hideElement() {
-    
+function showGame() {
+
     var gameRule = document.querySelector('#gameControl');
     gameRule.classList.remove('control', 'center');
     gameRule.classList.add('hide');
@@ -14,26 +16,28 @@ function hideElement() {
     }
 }
 
-function showElement() {
+function hideGame() {
     var gameRule = document.querySelector('#gameControl');
-    gameRule.classList.add('control', 'center');
-    gameRule.classList.remove('hide');
-    if (gameWrapper.classList.contains('hide')) {
+    if (gameRule.classList.contains('hide')) {
+        gameRule.classList.remove('hide');
+        gameRule.classList.add('control', 'center');
+    }
+    if (!gameWrapper.classList.contains('hide')) {
         gameWrapper.classList.add('hide');
         gameWrapper.classList.remove('center');
     }
-}
+} //end hide game
 
 document.getElementById("start_game").onclick = function () {
-        hideElement();
+        showGame();
         game.readTextFile();
-        game.getData();
-		game.startTimer();
-		
-        
-    if(lose){
-        showElement();
-    }
+        game.getData(); 
+         game.startTimer();
+        if (lose) {
+            showElement();
+        }
+       
+
 
         var correct = document.getElementsByClassName("answer");
 
@@ -41,6 +45,7 @@ document.getElementById("start_game").onclick = function () {
 window.onload = function () {
 
 };
+
 
 /*function readTextFile(file, callback) {
     var rawFile = new XMLHttpRequest();
@@ -68,7 +73,11 @@ if (typeof (Storage) !== "undefined") {
 }
 //object class start
 var game = {
+<<<<<<< HEAD
 	x:"",
+=======
+
+>>>>>>> origin/master
     question: "",
     choice: "",
     id: "",
@@ -182,13 +191,13 @@ var game = {
                 this.level = (parseInt(this.level) - 1);
 
                 game.getData();
-				game.startTimer();
+                game.startTimer();
             }
         } else {
-            alert("wrong bro go home");
-            this.popup.classList.remove('hide');
-            lose=true;
-            
+            //alert("wrong bro go home");
+            this.youLose();
+            lose = true;
+
             this.restartGame();
         }
     },
@@ -212,9 +221,10 @@ var game = {
 
         return qasked;
     },
-	
+
     /*Function times needs to be worked on*/
     startTimer: function () {
+<<<<<<< HEAD
 	var time=10;
 	 this.x = setInterval(function() {
 				
@@ -252,6 +262,38 @@ var game = {
         var setTime = 60 * .1,
             display = document.querySelector('#time');
         game.startTimer(setTime, display);
+=======
+        var time = 10;
+        this.x = setInterval(function () {
+
+            var minutes = time / 60;
+            var seconds = time % 60;
+
+            if (seconds == 0) {
+                // Output the result in an element with id="demo"
+                document.getElementById("time").innerHTML = parseInt(minutes) + ":" + seconds + "0";
+                time--;
+
+            } else {
+                // Output the result in an element with id="demo"
+                document.getElementById("time").innerHTML = parseInt(minutes) + ":" + seconds;
+                time--;
+
+            }
+
+            // If the count down is over, write some text 
+            if (parseInt(time) < 0) {
+                stopTimer();
+            }
+        }, 1000);
+
+
+
+    },
+    stopTimer: function () {
+        clearInterval(this.x);
+        document.getElementById("time").innerHTML = "EXPIRED";
+>>>>>>> origin/master
     },
     restartGame: function () {
 
@@ -259,7 +301,22 @@ var game = {
         this.id = ""
         this.questionArray = [];
         this.level = 8;
-    }
+    },
+    youLose: function () {
+        this.popup.classList.remove('hide');
+    },
 
 
 }; //end object
+var span = document.getElementsByClassName('close')[0];
+span.onclick = function () {
+    if (!game.popup.classList.contains('hide')) {
+        game.popup.classList.add('hide');
+        hideGame();
+    }
+}
+window.onclick = function (event) {
+    if (event.target == game.popup) {
+        game.popup.classList.add('hide');
+    }
+}

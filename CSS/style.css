@@ -11,8 +11,12 @@
         src: local('Racing Sans One'), local('RacingSansOne-Regular'), /*url(http://really-long-url.woff) format('woff');*/
     }
     body {
+<<<<<<< HEAD
+/*        background: url(../Images/bg.jpg) no-repeat center fixed;*/
+=======
         /* background: url(../Images/bg.jpg) no-repeat center fixed; */
         background: white;
+>>>>>>> origin/master
         background-size: cover;
     }
     .border {
@@ -38,6 +42,10 @@
         width: 100%;
         height: 100%;
     }
+#container{
+    position: absolute;
+    z-index: 1;
+}
     #volume > img {
         /*background url(../Images/volume_on.png) no-repeat fixed;*/
         height: 10%;
@@ -50,15 +58,14 @@
     #game {
         /*display: none;*/
         position: relative;
-        z-index: 1;
+        
     }
 #bankWrapper{
     position: relative;
-        z-index: 1;
+    
 }
 #gameWrapper{
     position: relative;
-        z-index: 1;
 }
     .wrapper {
         width: 90%;
@@ -71,7 +78,7 @@
         width: 30%;
         height: 90%;
         left: -2.5%;
-        z-index: 1;
+       
     }
     .moneyTree {
         position: relative;
@@ -80,14 +87,13 @@
         margin-top: 1%;
         top: 1%;
         border-radius: 2.5em / 1.25em;
-        z-index: 1;
-    }
+}
     .bank {
         position: relative;
         width: 80%;
         height: 10%;
         top: 5%;
-        z-index: 1;
+        
     }
     .oval {
         border-radius: 10em / 5em;
@@ -96,7 +102,7 @@
         position: relative;
         width: 60%;
         height: 90%;
-        z-index: 1;
+        
     }
     .backGround {
         background: orange;
@@ -135,7 +141,7 @@
         top: 2%;
         color: #000;
         background-color: #fed;
-        z-index: 1;
+        
     }
     .answer1,
     .answer2,
@@ -146,7 +152,7 @@
         top: 1em;
         color: #00;
         background-color: #edf;
-        z-index: 1;
+       
     }
     .control {
         position: fixed;
@@ -172,15 +178,17 @@
         left: 25%;
     }
     #gameInfoHolder {
-        position: relative;
+        position: absolute;
         width: 90%;
         height: 70%;
+        left: 5%;
+        top: 15%;
         background-color: burlywood;
         -webkit-animation-duration: 1s;
         animation-duration: 1s;
         -webkit-animation-fill-mode: both;
         animation-fill-mode: both;
-        z-index: 9;
+        z-index: 2;
     }
 
 #gameInfoHolder > div.closeHolder{
