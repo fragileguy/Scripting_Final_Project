@@ -68,7 +68,7 @@ if (typeof (Storage) !== "undefined") {
 }
 //object class start
 var game = {
-	
+	x:"",
     question: "",
     choice: "",
     id: "",
@@ -216,7 +216,7 @@ var game = {
     /*Function times needs to be worked on*/
     startTimer: function () {
 	var time=10;
-	var x = setInterval(function() {
+	 this.x = setInterval(function() {
 				
 				var minutes = time/60;
 				var seconds = time % 60;
@@ -235,14 +235,17 @@ var game = {
 						
 				// If the count down is over, write some text 
 				if (parseInt(time)< 0) {
-					clearInterval(x);
-					document.getElementById("time").innerHTML = "EXPIRED";
+					stopTimer();
 				}
 			}, 1000);
        
       
 
     },
+	stopTimer: function(){
+				clearInterval(this.x);
+				document.getElementById("time").innerHTML = "EXPIRED";
+		}
 	
 	
     countDown: function () {
