@@ -26,16 +26,18 @@ function hideGame() {
         gameWrapper.classList.add('hide');
         gameWrapper.classList.remove('center');
     }
-}//end hide game
+} //end hide game
 
 document.getElementById("start_game").onclick = function () {
         showGame();
         game.readTextFile();
-        game.getData();
-
+        game.getData(); 
+         game.startTimer();
         if (lose) {
             showElement();
         }
+       
+
 
         var correct = document.getElementsByClassName("answer");
 
@@ -71,6 +73,7 @@ if (typeof (Storage) !== "undefined") {
 }
 //object class start
 var game = {
+
     question: "",
     choice: "",
     id: "",
@@ -80,7 +83,6 @@ var game = {
     moneyHolder: document.getElementsByClassName('moneyTree'),
     level: 8,
     moneyBank: document.getElementsByClassName('bank'),
-    time: "1:00",
     popup: document.getElementById('gameinfoHolder'),
 
     /*function using http protocol to get and reads json file raw stored locally, this function is
@@ -170,7 +172,6 @@ var game = {
     /*ifCorrect function accepts two args question from on file (its answer) & userChoice if user choice matches on file, money is added, user levels up, new question shown*/
     ifCorrect: function (question, userChoice) {
         var bank = 0;
-        var addTime = 60 * .3;
         //        alert("question about to be asked if correct: " + question)
         if (question == userChoice) {
             alert("you are correct");
@@ -186,6 +187,7 @@ var game = {
                 this.level = (parseInt(this.level) - 1);
 
                 game.getData();
+                game.startTimer();
             }
         } else {
             //alert("wrong bro go home");
@@ -215,30 +217,39 @@ var game = {
 
         return qasked;
     },
+
     /*Function times needs to be worked on*/
-    startTimer: function (duration, display) {
-        var timer = duration,
-            minutes, seconds;
-        setInterval(function () {
-            minutes = parseInt(timer / 60, 10)
-            seconds = parseInt(timer % 60, 10);
+    startTimer: function () {
+        var time = 10;
+        this.x = setInterval(function () {
 
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
+            var minutes = time / 60;
+            var seconds = time % 60;
 
-            display.textContent = minutes + ":" + seconds;
+            if (seconds == 0) {
+                // Output the result in an element with id="demo"
+                document.getElementById("time").innerHTML = parseInt(minutes) + ":" + seconds + "0";
+                time--;
 
-            if (--timer == 0) {
-                timer = duration;
-                alert("Game Over");
+            } else {
+                // Output the result in an element with id="demo"
+                document.getElementById("time").innerHTML = parseInt(minutes) + ":" + seconds;
+                time--;
+
+            }
+
+            // If the count down is over, write some text 
+            if (parseInt(time) < 0) {
+                stopTimer();
             }
         }, 1000);
 
+
+
     },
-    countDown: function () {
-        var setTime = 60 * .1,
-            display = document.querySelector('#time');
-        game.startTimer(setTime, display);
+    stopTimer: function () {
+        clearInterval(this.x);
+        document.getElementById("time").innerHTML = "EXPIRED";
     },
     restartGame: function () {
 
