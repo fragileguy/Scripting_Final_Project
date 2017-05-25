@@ -1,10 +1,12 @@
 var gameWrapper = document.querySelector('#game');
-gameWrapper.classList.remove('center');
-gameWrapper.classList.add('hide');
-var lose=false;
+if (!gameWrapper.classList.contains('hide')) {
+    gameWrapper.classList.remove('center');
+    gameWrapper.classList.add('hide');
+}
+var lose = false;
 
-function hideElement() {
-    
+function showGame() {
+
     var gameRule = document.querySelector('#gameControl');
     gameRule.classList.remove('control', 'center');
     gameRule.classList.add('hide');
@@ -14,24 +16,26 @@ function hideElement() {
     }
 }
 
-function showElement() {
+function hideGame() {
     var gameRule = document.querySelector('#gameControl');
-    gameRule.classList.add('control', 'center');
-    gameRule.classList.remove('hide');
-    if (gameWrapper.classList.contains('hide')) {
+    if (gameRule.classList.contains('hide')) {
+        gameRule.classList.remove('hide');
+        gameRule.classList.add('control', 'center');
+    }
+    if (!gameWrapper.classList.contains('hide')) {
         gameWrapper.classList.add('hide');
         gameWrapper.classList.remove('center');
     }
-}
+}//end hide game
 
 document.getElementById("start_game").onclick = function () {
-        hideElement();
+        showGame();
         game.readTextFile();
         game.getData();
-        
-    if(lose){
-        showElement();
-    }
+
+        if (lose) {
+            showElement();
+        }
 
         var correct = document.getElementsByClassName("answer");
 
@@ -39,6 +43,7 @@ document.getElementById("start_game").onclick = function () {
 window.onload = function () {
 
 };
+
 
 /*function readTextFile(file, callback) {
     var rawFile = new XMLHttpRequest();
@@ -183,10 +188,10 @@ var game = {
                 game.getData();
             }
         } else {
-            alert("wrong bro go home");
-            this.popup.classList.remove('hide');
-            lose=true;
-            
+            //alert("wrong bro go home");
+            this.youLose();
+            lose = true;
+
             this.restartGame();
         }
     },
@@ -241,7 +246,22 @@ var game = {
         this.id = ""
         this.questionArray = [];
         this.level = 8;
-    }
+    },
+    youLose: function () {
+        this.popup.classList.remove('hide');
+    },
 
 
 }; //end object
+var span = document.getElementsByClassName('close')[0];
+span.onclick = function () {
+    if (!game.popup.classList.contains('hide')) {
+        game.popup.classList.add('hide');
+        hideGame();
+    }
+}
+window.onclick = function (event) {
+    if (event.target == game.popup) {
+        game.popup.classList.add('hide');
+    }
+}
