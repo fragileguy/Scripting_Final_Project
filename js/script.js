@@ -73,7 +73,7 @@ if (typeof (Storage) !== "undefined") {
 }
 //object class start
 var game = {
-	
+	x:"",
     question: "",
     choice: "",
     id: "",
@@ -221,6 +221,42 @@ var game = {
 	
     /*Function times needs to be worked on*/
     startTimer: function () {
+
+	var time=10;
+	var x = setInterval(function() {
+				
+				var minutes = time/60;
+				var seconds = time % 60;
+				
+				if(seconds == 0){
+					// Output the result in an element with id="demo"
+					document.getElementById("time").innerHTML = parseInt(minutes)+":"+seconds+"0";
+					time --;
+					
+				}else{
+					// Output the result in an element with id="demo"
+						document.getElementById("time").innerHTML = parseInt(minutes)+":"+seconds;
+						time --;
+				
+				}
+						
+				// If the count down is over, write some text 
+				if (parseInt(time)< 0) {
+					clearInterval(x);
+					document.getElementById("time").innerHTML = "EXPIRED";
+				}
+			}, 1000);
+       
+      
+
+    },
+	
+	
+    countDown: function () {
+        var setTime = 60 * .1,
+            display = document.querySelector('#time');
+        game.startTimer(setTime, display);
+
         var time = 10;
         game.x = setInterval(function () {
 			
@@ -251,11 +287,13 @@ var game = {
 	},
 	
     stopTimer: function () {
+
         clearInterval(game.x);
         
 	},
 	
 	
+
     restartGame: function () {
 		
         this.choice = "";
