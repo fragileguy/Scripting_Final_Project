@@ -12,7 +12,7 @@
     }
     body {
 
-        /* background: url(../Images/bg.jpg) no-repeat center fixed; */
+         background: url(../Images/bg.jpg) no-repeat center fixed; 
         background-size: cover;
     }
 
@@ -35,6 +35,12 @@
         margin-right: auto;
         margin-left: auto;
     }
+.inline{
+    display: inline;
+}
+.inlineBlock{
+    display: inline-block;
+}
     .container {
         width: 100%;
         height: 100%;
@@ -43,21 +49,44 @@
     position: absolute;
     z-index: 1;
 }
-    #volume > img {
-        /*background url(../Images/volume_on.png) no-repeat fixed;*/
-        height: 10%;
-        left: 12%;
-        position: relative;
-        cursor: pointer;
-    }
+
+.headerHolder{
+    width: 100%;
+    
+}
+.headerHolder > figure {
+    width: 10%;
+    position: relative;
+    left: 12%;
+    box-sizing: border-box;
+}
+.headerHolder > figure > img {
+    /*background url(../Images/volume_on.png) no-repeat fixed;*/
+    height: 10%;
+    width: 100%;
+    position: relative;
+    cursor: pointer;
+    box-sizing: border-box;
+    
+}
+.headerHolder > div{
+    width: 20%;
+/*    height: 10%;*/
+    position: relative;
+    left: 35%;
+    font-size: 20pt;
+    color: aliceblue;
+}
 #form{
     top: 10%;
     position: relative;
-    width: 80%;
+    width: 85%;
     height: 50%;
 }
 #form > h2{
     margin-top: 2%;
+    font-size: 38pt;
+    color: cyan;
 }
 #form > div, h2{
     height: 15%;
@@ -71,10 +100,16 @@
     border-right: none;
     width: 50%;
     outline: none;
-    margin-left: 2%;  
+    margin-left: 2%;
+    background-color: transparent;
+    font-size: 28pt;
+    color: coral;
+    text-transform: uppercase;
 }
 #form > div > span{
     margin-left: 2%;
+    color: floralwhite;
+    font-size: 28pt;
 }
 
 /*------------game--------*/
@@ -180,24 +215,24 @@
     }
     .control {
         position: fixed;
-        left: 0px;
-        bottom: 2%;
+        left: 20%;
+        bottom: 0px;
         height: 15%;
-        width: 100%;
+        width: 60%;
     }
     .control input {
-        border: none;
+/*        border: none;*/
         height: 40%;
-        padding: 0 2.5%;
+        padding: 0 3.5%;
         cursor: pointer;
         font-family: 'Racing Sans One';
         outline: none;
     }
     .control > #start_game {
         position: relative;
-        left: -25%;
+        left: -35%;
     }
-    .control > #rules {
+    .control > #butt_rules {
         position: relative;
         left: 25%;
     }

@@ -400,7 +400,7 @@ var game = {
         var messagefooter = document.querySelector('#messageFooter');
         messageheader.innerHTML = "You Are Correct";
         message.innerHTML = this.fact;
-        messagefooter.innerHTML = "Do You Wish To Bank "+this.userMoney+" ?";
+      //  messagefooter.innerHTML = "Do You Wish To Bank "+this.userMoney+" ?";
         this.popup.classList.remove('hide');
     }
 
