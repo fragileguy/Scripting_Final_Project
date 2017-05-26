@@ -2,7 +2,7 @@
 
 <head>
     <title>The Weakest Link Trinidad</title>
-    <link rel="stylesheet" type="text/css" href="CSS/style.css">
+    <link rel="stylesheet" type="text/css" href="CSS/style.css?<?php echo time(); ?">
 
 </head>
 
@@ -21,8 +21,8 @@
                     MESSAGE TO USER GOES HEREMESSAGE 
                 </div>
                 <div class="buttonHolder center">
-                    <input type="button" value="YES" />
-                    <input type="button" value="NO" />
+                    <input type="button" class="option" value="YES" />
+                    <input type="button" class="option" value="NO" />
                 </div>
             </div>
             <div id="fact" class="inlineBlock">
@@ -34,7 +34,7 @@
         </div>
     </section>
 
-    <div id="container" class="container border">
+    <div id="container" class="container">
         <div id="volume" class="headerHolder">
             <figure class="inlineBlock">
                 <img src="Images/volume_on.png" id="sound" alt="volume_on">

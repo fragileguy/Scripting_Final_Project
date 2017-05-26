@@ -6,10 +6,10 @@ var info = document.getElementsByClassName('info');
 var info2 = document.getElementsByName('info');
 var userName = document.getElementById('userName');
 var click = 1;
-var firstName = "";
+var firstName;
 var LastName = "";
 var registered = false;
-//alert(firstName);
+
 if (!gameWrapper.classList.contains('hide')) {
     gameWrapper.classList.remove('center');
     gameWrapper.classList.add('hide');
@@ -29,10 +29,7 @@ document.getElementById("butt_rules").onclick = function () {
         form.classList.remove('hide');
         rules.setAttribute('value', 'rules');
         click = 1;
-    }
-
-
-
+    } //end else if
 }
 document.getElementById("start_game").onclick = function () {
 
@@ -75,8 +72,8 @@ function validate() {
         info[0].setAttribute('placeholder', 'Enter Your First Name');
     }
     if (val) {
-        return val;
         userName.innerHTML = firstName;
+        return val;
     }
 }
 
@@ -121,6 +118,7 @@ if (typeof (Storage) !== "undefined") {
         userName.innerHTML = "Welcome back, " + localStorage.firstname;
         registered = true;
     } else {
+        alert(firstName);
         localStorage.firstname = firstName;
     }
 } else {
@@ -148,8 +146,10 @@ var game = {
     moneyBank: document.getElementsByClassName('bank'),
     popup: document.getElementById('gameinfoHolder'),
     completed: false,
+    opt: false,
     takeMoney: 0,
     bankMoney: document.getElementsByClassName('response'),
+    option: document.getElementsByClassName('option'),
 
     /*function using http protocol to get and reads json file raw stored locally, this function is
 	used by the getData function to convert json to readable data by javascript*/
@@ -249,35 +249,20 @@ var game = {
 
             console.log("Current level is: " + this.level);
             console.log("^^^^^^^^^^^^^_____^^^^^^^^^^^^");
-            //            alert("level right before div change "+this.level)
-
             if (game.moneyHolder[this.level].classList.contains('backGround')) {
                 game.moneyHolder[this.level].classList.remove('backGround');
                 game.moneyHolder[this.level - 1].classList.add('backGround');
                 this.moneyLevel = this.moneyLevel - 1;
-                this.youAreCorrect();
                 this.userMoney = game.moneyHolder[this.moneyLevel].getAttribute('value');
-                var bankMoney2 = confirm('Do You Wish To Bank Money?' + this.userMoney);
+                this.youAreCorrect();
 
 
-
-                if (bankMoney2) {
-                    game.takeMoney = parseInt(game.takeMoney);
-                    game.takeMoney += parseInt(game.userMoney);
-                    //                     if (game.moneyHolder[this.level+1].classList.contains('backGround')) {
-                    game.moneyHolder[game.level].classList.remove('backGround');
-                    game.moneyHolder[8].classList.add('backGround');
-                    //  }
-                    this.level = 9;
-                    this.moneyLevel = 9;
-                    game.moneyBank[0].innerHTML = '$' + this.takeMoney;
-
-                }
-
-                //                alert("level of money "+this.level)
+                /*game.level=9
+                game.moneyLevel*/
+                
                 this.level = (parseInt(this.level) - 1);
                 game.getData();
-            }
+            } //end if statment
         } else {
             //alert("wrong bro go home");
             //this.youLose();
@@ -402,12 +387,38 @@ var game = {
         var fact = document.querySelector('#factDis');
 
         messageheader.innerHTML = "You Are Correct";
-        message.innerHTML = "Do You Wish To Bank $" + this.userMoney + " ?";
-        if (!this.fact) {
+        if (this.userMoney != 0) {
+            message.innerHTML = "Do You Wish To Bank $" + this.userMoney + " ?";
+            this.option[0].onclick = function () {
+                game.choice = game.option[0].getAttribute('value');
+                if (game.choice == 'YES' || game.choice == 'yes') {
+                    game.opt = true;
+                    console.log(game.choice, game.opt);
+
+                    game.takeMoney = parseInt(game.takeMoney);
+                    game.takeMoney += parseInt(game.userMoney);
+
+                    game.moneyBank[0].innerHTML = '$' + game.takeMoney;
+                    game.moneyHolder[game.level].classList.add('backGround');
+                    game.moneyHolder[8].classList.add('backGround');
+                    /*game.level = 9;
+                    game.moneyLevel = 9;*/
+                }
+
+            }
+            this.option[1].onclick = function () {
+                game.choice = game.option[1].getAttribute('value');
+                if (game.choice == 'NO' || game.choice == 'NO') {
+                    console.log(game.choice);
+                    game.opt = false;
+                }
+            }
+        }
+        if (this.fact) {
             fact.innerHTML = this.fact;
         }
         this.popup.classList.remove('hide');
-    }
+    } //end function you are correct
 
 }; //end object
 var span = document.getElementsByClassName('close')[0];
