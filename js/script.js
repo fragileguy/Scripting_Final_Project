@@ -38,6 +38,7 @@ document.getElementById("start_game").onclick = function () {
             game.readTextFile();
             game.getData();
             game.startTimer();
+			
             if (!form.classList.contains('hide')) {
                 form.classList.add('hide');
             }
@@ -127,7 +128,7 @@ if (typeof (Storage) !== "undefined") {
 }
 //object class start
 var game = {
-    time: 240,
+    time: 10,
     x: "",
     question: "",
     choice: "",
@@ -253,15 +254,19 @@ var game = {
                 game.moneyHolder[this.level].classList.remove('backGround');
                 game.moneyHolder[this.level - 1].classList.add('backGround');
                 this.moneyLevel = this.moneyLevel - 1;
+				
                 this.userMoney = game.moneyHolder[this.moneyLevel].getAttribute('value');
-                this.youAreCorrect();
-
+				
+				game.stopTimer();
+  				this.youAreCorrect();
+				
 
                 /*game.level=9
                 game.moneyLevel*/
                 
                 this.level = (parseInt(this.level) - 1);
                 game.getData();
+				
             } //end if statment
         } else {
             //alert("wrong bro go home");
@@ -298,7 +303,7 @@ var game = {
     startTimer: function () {
 
 
-        var x = setInterval(function () {
+        this.x = setInterval(function () {
 
             var minutes = game.time / 60;
             var seconds = game.time % 60;
@@ -318,7 +323,7 @@ var game = {
             // If the count down is over, write some text 
             if (game.time == -1) {
                 var completed = false;
-                clearInterval(x);
+                clearInterval(game.x);
 
                 if (this.completed) {
                     game.showRoundThree();
@@ -341,7 +346,8 @@ var game = {
 
     },
     stopTimer: function () {
-        clearInterval(x);
+        clearInterval(game.x);
+		return;
     },
     showRoundTwo: function () {
         var bank = document.getElementsByClassName('bankWrapper');
@@ -382,27 +388,28 @@ var game = {
         this.popup.classList.remove('hide');
     },
     youAreCorrect() {
+	   
         var messageheader = document.querySelector('#messageHeader');
         var message = document.querySelector('#messageDis');
         var fact = document.querySelector('#factDis');
-
+		
         messageheader.innerHTML = "You Are Correct";
+			
         if (this.userMoney != 0) {
             message.innerHTML = "Do You Wish To Bank $" + this.userMoney + " ?";
             this.option[0].onclick = function () {
                 game.choice = game.option[0].getAttribute('value');
                 if (game.choice == 'YES' || game.choice == 'yes') {
-                    game.opt = true;
-                    console.log(game.choice, game.opt);
-
                     game.takeMoney = parseInt(game.takeMoney);
                     game.takeMoney += parseInt(game.userMoney);
 
                     game.moneyBank[0].innerHTML = '$' + game.takeMoney;
-                    game.moneyHolder[game.level].classList.add('backGround');
+                    game.moneyHolder[game.level].classList.remove('backGround');
                     game.moneyHolder[8].classList.add('backGround');
-                    /*game.level = 9;
-                    game.moneyLevel = 9;*/
+                    game.level = 8;
+                    game.moneyLevel = 9;
+					game.userMoney="";
+					
                 }
 
             }
@@ -413,11 +420,15 @@ var game = {
                     game.opt = false;
                 }
             }
-        }
+        }else{
+			message.innerHTML = "You cannot bank $" + this.userMoney ;
+		
+		}
         if (this.fact) {
             fact.innerHTML = this.fact;
         }
         this.popup.classList.remove('hide');
+		
     } //end function you are correct
 
 }; //end object
@@ -425,6 +436,7 @@ var span = document.getElementsByClassName('close')[0];
 span.onclick = function () {
     if (!game.popup.classList.contains('hide')) {
         game.popup.classList.add('hide');
+		game.startTimer();
         // hideGame();
     }
 }
