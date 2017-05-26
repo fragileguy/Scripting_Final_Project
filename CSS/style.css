@@ -1,58 +1,54 @@
-        hmtl,
-    * {
-        padding: 0;
-        margin: 0;
-        box-sizing: border-box;
-    }
-    @font-face {
-        font-family: 'Racing Sans One';
-        font-style: normal;
-        font-weight: 400;
-        src: local('Racing Sans One'), local('RacingSansOne-Regular'), /*url(http://really-long-url.woff) format('woff');*/
-    }
-    body {
-
-         background: url(../Images/bg.jpg) no-repeat center fixed; 
-        background-size: cover;
-    }
-
-    .border {
-        border: solid;
-        border-color: black;
-    }
-    .hide {
-        display: none;
-    }
-    .show {
-        display: block;
-    }
-    .center {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .centerTag {
-        margin-right: auto;
-        margin-left: auto;
-    }
-.inline{
+    hmtl,
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: 'Racing Sans One';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Racing Sans One'), local('RacingSansOne-Regular'), /*url(http://really-long-url.woff) format('woff');*/
+}
+body {
+    background: url(../Images/bg.jpg) no-repeat center fixed;
+    background-size: cover;
+}
+.border {
+    border: solid;
+    border-color: black;
+}
+.hide {
+    display: none;
+}
+.show {
+    display: block;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.centerTag {
+    margin-right: auto;
+    margin-left: auto;
+}
+.inline {
     display: inline;
 }
-.inlineBlock{
+.inlineBlock {
     display: inline-block;
 }
-    .container {
-        width: 100%;
-        height: 100%;
-    }
-#container{
+.container {
+    width: 100%;
+    height: 100%;
+}
+#container {
     position: absolute;
     z-index: 1;
 }
-
-.headerHolder{
+.headerHolder {
     width: 100%;
-    
 }
 .headerHolder > figure {
     width: 10%;
@@ -67,34 +63,40 @@
     position: relative;
     cursor: pointer;
     box-sizing: border-box;
-    
 }
-.headerHolder > div{
-    width: 20%;
-/*    height: 10%;*/
+.headerHolder > div {
+    width: 15%;
+    /*    height: 10%;*/
     position: relative;
-    left: 35%;
+    left: 15%;
     font-size: 20pt;
     color: aliceblue;
+    border-radius: 10em / 5em;
+    padding-left: 2%;
+    border: solid;
 }
-#form{
+.headerHolder > div:nth-child(4) {
+    width: 30%;
+}
+#form {
     top: 10%;
     position: relative;
     width: 85%;
     height: 50%;
 }
-#form > h2{
+#form > h2 {
     margin-top: 2%;
     font-size: 38pt;
-    color: cyan;
+    color: chartreuse;
 }
-#form > div, h2{
+#form > div,
+h2 {
     height: 15%;
     width: inherit;
-/*    border: solid;*/
+    /*    border: solid;*/
     margin-top: 5%
 }
-#form > div > input{
+#form > div > input {
     border-left: none;
     border-top: none;
     border-right: none;
@@ -103,199 +105,275 @@
     margin-left: 2%;
     background-color: transparent;
     font-size: 28pt;
-    color: coral;
+    color: chartreuse;
     text-transform: uppercase;
 }
-#form > div > span{
+#form > div > span {
     margin-left: 2%;
     color: floralwhite;
     font-size: 28pt;
 }
+/*---------rules----------------*/
 
-/*------------game--------*/
-    #game {
-        /*display: none;*/
-        position: relative;
-        
-    }
-#bankWrapper{
+#rules {
+    width: 75%;
+    height: 70%;
     position: relative;
+    top: 5%;
+}
+#rules > h2 {
+    width: 90%;
+    position: relative;
+    top: -10%;
+    font-size: 28pt;
+    color: darkorange;
+}
+#rules > p,
+ul {
+    position: relative;
+    width: 90%;
+}
+/*------------game--------*/
+
+#game {
+    /*display: none;*/
+    position: relative;
+}
+#bankWrapper {
+    position: relative;
+}
+#gameWrapper {
+    position: relative;
+}
+.wrapper {
+    width: 90%;
+    height: 80%;
+    position: relative;
+    top: 5%;
+}
+.bankWrapper {
+    position: relative;
+    width: 30%;
+    height: 90%;
+    left: -2.5%;
+}
+.moneyTree {
+    position: relative;
+    width: 30%;
+    height: 8%;
+    margin-top: 1%;
+    top: 1%;
+    border-radius: 2.5em / 1.25em;
+}
+.bank {
+    position: relative;
+    width: 80%;
+    height: 10%;
+    top: 5%;
+}
+.oval {
+    border-radius: 10em / 5em;
+}
+.gameWrapper {
+    position: relative;
+    width: 60%;
+    height: 90%;
+}
+.backGround {
+    background: orange;
+}
+.moneyTree:nth-child(1) {
+    width: 60%;
+}
+.moneyTree:nth-child(2) {
+    width: 53%;
+}
+.moneyTree:nth-child(3) {
+    width: 46%;
+}
+.moneyTree:nth-child(4) {
+    width: 39%;
+}
+.moneyTree:nth-child(5) {
+    width: 35%;
+}
+.moneyTree:nth-child(6) {
+    width: 29%;
+}
+.moneyTree:nth-child(7) {
+    width: 24%;
+}
+.moneyTree:nth-child(8) {
+    width: 20%;
+}
+.moneyTree:nth-child(9) {
+    width: 9%;
+}
+.question {
+    position: relative;
+    width: 80%;
+    height: 30%;
+    top: 2%;
+    color: #000;
+    background-color: #fed;
+}
+.answer1,
+.answer2,
+.answer3 {
+    position: relative;
+    width: 60%;
+    height: 15%;
+    top: 1em;
+    color: #00;
+    background-color: #edf;
+}
+.control {
+    position: fixed;
+    left: 20%;
+    bottom: 0px;
+    height: 15%;
+    width: 60%;
+}
+.control input {
+    border: none;
+    height: 40%;
+    padding: 0 3.5%;
+    cursor: pointer;
+    font-family: 'Racing Sans One';
+    outline: none;
+}
+.control > #start_game {
+    position: relative;
+    background-color: chartreuse;
+    left: -35%;
+}
+.control > #butt_rules {
+    position: relative;
+    background-color: darkorange;
+    left: 35%;
+}
+#gameInfoHolder {
+    position: absolute;
+    width: 90%;
+    height: 70%;
+    left: 5%;
+    top: 15%;
+    background-color: burlywood;
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    z-index: 2;
+}
+#gameInfoHolder > div.closeHolder {
+    width: 100%;
+    height: 8%;
+    padding-right: 5px;
+    text-align: right;
+}
+#gameInfoHolder > div > .close {
+    font-size: 28px;
+    cursor: pointer;
+}
+#gameInfoHolder > #messageHeader {
+    width: inherit;
+    color: chartreuse;
+}
+.displayInfoWrapper {
+    width: 90%;
+    height: 80%;
+    position: relative;
+}
+#message {
+    width: 40%;
+    height: 90%;
+    left: 2.5%;
+    position: relative;
+}
+#message > h2 {
+    width: 100%;
+}
+#message > #messageDis {
+    width: 100%;
+    height: 65%;
+    position: relative;
+}
+.buttonHolder {
+    width: 100%;
+}
+.buttonHolder > input {
+    width: 45%;
+    padding: 3%;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+.buttonHolder > input:nth-Child(1) {
+    background-color: darkgreen;
+}
+.buttonHolder > input:nth-Child(2) {
+    background-color: darkred;
+}
+.buttonHolder > input:nth-Child(1):hover {
+    background-color: chartreuse;
+}
+.buttonHolder > input:nth-Child(2):hover {
+    background-color: crimson;
+}
+#fact {
+    position: absolute;
+    width: 55%;
+    height: 90%;
+    left: 2.5%;
     
 }
-#gameWrapper{
+#fact > h2 {
+    width: 100%;
+    position: relative;
+    top: -2%
+}
+#fact {
+    width: 55%;
+    height: 90%;
+    left: 2.5%;
+    position: relative;
+    top: -31%;
+}
+#fact > #factDis {
+    width: 100%;
+    height: 70%;
     position: relative;
 }
-    .wrapper {
-        width: 90%;
-        height: 80%;
-        position: relative;
-        top: 5%;
-    }
-    .bankWrapper {
-        position: relative;
-        width: 30%;
-        height: 90%;
-        left: -2.5%;
-       
-    }
-    .moneyTree {
-        position: relative;
-        width: 30%;
-        height: 8%;
-        margin-top: 1%;
-        top: 1%;
-        border-radius: 2.5em / 1.25em;
-}
-    .bank {
-        position: relative;
-        width: 80%;
-        height: 10%;
-        top: 5%;
-        
-    }
-    .oval {
-        border-radius: 10em / 5em;
-    }
-    .gameWrapper {
-        position: relative;
-        width: 60%;
-        height: 90%;
-        
-    }
-    .backGround {
-        background: orange;
-    }
-    .moneyTree:nth-child(1) {
-        width: 60%;
-    }
-    .moneyTree:nth-child(2) {
-        width: 53%;
-    }
-    .moneyTree:nth-child(3) {
-        width: 46%;
-    }
-    .moneyTree:nth-child(4) {
-        width: 39%;
-    }
-    .moneyTree:nth-child(5) {
-        width: 35%;
-    }
-    .moneyTree:nth-child(6) {
-        width: 29%;
-    }
-    .moneyTree:nth-child(7) {
-        width: 24%;
-    }
-    .moneyTree:nth-child(8) {
-        width: 20%;
-    }
-    .moneyTree:nth-child(9) {
-        width: 9%;
-    }
-	
-    .question {
-        position: relative;
-        width: 80%;
-        height: 30%;
-        top: 2%;
-        color: #000;
-        background-color: #fed;
-        
-    }
-    .answer1,
-    .answer2,
-    .answer3 {
-        position: relative;
-        width: 60%;
-        height: 15%;
-        top: 1em;
-        color: #00;
-        background-color: #edf;
-       
-    }
-    .control {
-        position: fixed;
-        left: 20%;
-        bottom: 0px;
-        height: 15%;
-        width: 60%;
-    }
-    .control input {
-/*        border: none;*/
-        height: 40%;
-        padding: 0 3.5%;
-        cursor: pointer;
-        font-family: 'Racing Sans One';
-        outline: none;
-    }
-    .control > #start_game {
-        position: relative;
-        left: -35%;
-    }
-    .control > #butt_rules {
-        position: relative;
-        left: 25%;
-    }
-    #gameInfoHolder {
-        position: absolute;
-        width: 90%;
-        height: 70%;
-        left: 5%;
-        top: 15%;
-        background-color: burlywood;
-        -webkit-animation-duration: 1s;
-        animation-duration: 1s;
-        -webkit-animation-fill-mode: both;
-        animation-fill-mode: both;
-        z-index: 2;
-    }
-
-#gameInfoHolder > div.closeHolder{
-        width: 100%;
-        height: 10%; 
-        padding-right: 5px;
-        text-align: right;
-    }
-#gameInfoHolder > div > .close{
-        font-size: 28px;
-        cursor: pointer;
-    }
-#gameInfoHolder > div.center{
-        width: 100%;
-        height: 100%; 
-        align-items:flex-start;
-        margin-top: 5%;
-    }
-.fadeIn{
+.fadeIn {
     -webkit-animation-name: fadeIn;
-     animation-name: fadeIn;
+    animation-name: fadeIn;
 }
-    @-webkit-keyframes fadeIn {
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+    @keyframes myMove {
         0% {
-            opacity: 0;
+            top: 0px;
+        }
+        25% {
+            top: 50px;
+        }
+        75% {
+            top: 100px;
         }
         100% {
-            opacity: 1;
+            top: 150px;
         }
     }
-    @keyframes fadeIn {
-        0% {
-            opacity: 0;
-        }
-        100% {
-            opacity: 1;
-        }
-        @keyframes myMove {
-            0% {
-                top: 0px;
-            }
-            25% {
-                top: 50px;
-            }
-            75% {
-                top: 100px;
-            }
-            100% {
-                top: 150px;
-            }
-        }

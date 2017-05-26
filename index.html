@@ -7,18 +7,31 @@
 </head>
 
 <body>
-    <section id="gameinfoHolder" class="border centerTag fadeIn hide">
+    <section id="gameinfoHolder" class="centerTag fadeIn hide">
         <div class="closeHolder">
             <span class="close">&times;</span>
         </div>
-        <div id="messageHeader" class="center centerTag">
-
+        <h1 id="messageHeader" class="center centerTag">
+            HEADER INFOMATION
+        </h1>
+        <div class="displayInfoWrapper centerTag">
+            <div id="message" class="inlineBlock">
+                <h2 class="center">BANKING</h2>
+                <div id="messageDis" class="center">
+                    MESSAGE TO USER GOES HEREMESSAGE 
+                </div>
+                <div class="buttonHolder center">
+                    <input type="button" value="YES" />
+                    <input type="button" value="NO" />
+                </div>
+            </div>
+            <div id="fact" class="inlineBlock">
+                <h2 class="center centerTag">FACT</h2>
+                   <div id="factDis" class="">
+                    FACT TO USER GOES HERE 
+                </div>
+            </div>
         </div>
-        <div id="message" class="">
-            SORRY, YOU HAVE LOSE
-        </div>
-
-
     </section>
 
     <div id="container" class="container border">
@@ -26,10 +39,13 @@
             <figure class="inlineBlock">
                 <img src="Images/volume_on.png" id="sound" alt="volume_on">
             </figure>
-            <div class="inlineBlock">Time: <span id="time">02:00</span>
+            <div class="inlineBlock center">Time: <span id="time">02:00</span>
             </div>
-            <div class="inlineBlock">Round: 
+            <div class="inlineBlock center">Round:
                 <span class="round">1</span>
+            </div>
+            <div class="inlineBlock center">
+                Hi: <span id="userName"></span>
             </div>
         </div>
 
@@ -52,6 +68,23 @@
                 </span>
                 <div class="error"></div>
             </div>
+        </section>
+        <section id="rules" class="centerTag hide">
+            <h2 class="centerTag center">Game Rules</h2>
+            <p class="centerTag center">
+                The game features a single player who is required to answer general knowledge questions
+
+            </p>
+            <ul class="centerTag center">
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+                <li>1</li>
+            </ul>
+
+            <p>
+            </p>
+
         </section>
         <section id="game" class="wrapper border centerTag center">
             <aside class="bankWrapper  border" style="color: red">
@@ -93,20 +126,9 @@
             </artilce>
         </section>
 
-        <section id="rules" class="hide">
-            <p>
-                The game features a single player who is required to answer general knowledge questions
-
-            </p>
-
-            <p>
-            </p>
-
-        </section>
-
         <section id="gameControl" class="control center">
-            <input type="button" id="start_game" class="border" value="START GAME" />
-            <input type="button" class="border" VALUE="RULES" id="butt_rules" />
+            <input type="button" id="start_game" class="" value="START GAME" />
+            <input type="button" class="" value="RULES" id="butt_rules" />
         </section>
 
     </div>

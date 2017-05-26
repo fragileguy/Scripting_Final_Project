@@ -4,7 +4,11 @@ var rules = document.querySelector('#rules');
 var error = document.getElementsByClassName('error');
 var info = document.getElementsByClassName('info');
 var info2 = document.getElementsByName('info');
-
+var userName = document.getElementById('userName');
+var click = 1;
+var firstName = "";
+var LastName = "";
+var registered = false;
 //alert(firstName);
 if (!gameWrapper.classList.contains('hide')) {
     gameWrapper.classList.remove('center');
@@ -13,18 +17,26 @@ if (!gameWrapper.classList.contains('hide')) {
 }
 
 document.getElementById("butt_rules").onclick = function () {
+
     if (rules.classList.contains('hide')) {
         rules.classList.remove('hide');
-    }
-    if (!form.classList.contains('hide')) {
         form.classList.add('hide');
+        //        rules.setAttribute('value','close rule');
+        rules.value = 'close rule';
+        click++;
+    } else if (!rules.classList.contains('hide') && form.classList.contains('hide') && click == 2) {
+        rules.classList.add('hide');
+        form.classList.remove('hide');
+        rules.setAttribute('value', 'rules');
+        click = 1;
     }
+
 
 
 }
 document.getElementById("start_game").onclick = function () {
 
-        if (validate()) {
+        if (validate() || registered) {
             showGame();
             game.readTextFile();
             game.getData();
@@ -43,8 +55,8 @@ document.getElementById("start_game").onclick = function () {
 
     } //end onclick function start game
 function validate() {
-    var firstName = info[0].value;
-var LastName = info[1].value;
+    firstName = info[0].value;
+    LastName = info[1].value;
     var val = true;
     var reg = /^[a-zA-Z ]{1,15}$/
     if (firstName == "" || firstName == null) {
@@ -54,7 +66,7 @@ var LastName = info[1].value;
     } else if (firstName != "" || firstName != null) {
         if (!reg.test(firstName)) {
             info[0].setAttribute('placeholder', firstName + 'doesnt match requirments, re-enter');
-            error[0].innerHTML='Doesnt match requirments, re-enter';
+            error[0].innerHTML = 'Doesnt match requirments, re-enter';
             val = false;
         } else {
             info[0].setAttribute('placeholder', 'Enter Your First Name');
@@ -64,6 +76,7 @@ var LastName = info[1].value;
     }
     if (val) {
         return val;
+        userName.innerHTML = firstName;
     }
 }
 
@@ -76,6 +89,7 @@ function showGame() {
     if (gameWrapper.classList.contains('hide')) {
         gameWrapper.classList.remove('hide');
         gameWrapper.classList.add('center');
+
     }
 }
 
@@ -100,26 +114,14 @@ window.onload = function () {
 
 };
 
-
-/*function readTextFile(file, callback) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.overrideMimeType("application/json");
-    rawFile.open("GET", file, true);
-    rawFile.onreadystatechange = function () {
-	if (rawFile.readyState === 4 && rawFile.status == "200") {
-	callback(rawFile.responseText);
-	}
-    }
-    rawFile.send(null);
-}*/
 if (typeof (Storage) !== "undefined") {
     // Code for localStorage/sessionStorage.
 
-    if (localStorage.lastname) {
-       // alert("Hi Welcome back " + localStorage.lastname);
+    if (localStorage.firstname) {
+        userName.innerHTML = "Welcome back, " + localStorage.firstname;
+        registered = true;
     } else {
-        var lname = prompt("Enter Your Name bro");
-        localStorage.lastname = lname;
+        localStorage.firstname = firstName;
     }
 } else {
     // Sorry! No Web Storage support..
@@ -148,7 +150,7 @@ var game = {
     completed: false,
     takeMoney: 0,
     bankMoney: document.getElementsByClassName('response'),
-    
+
     /*function using http protocol to get and reads json file raw stored locally, this function is
 	used by the getData function to convert json to readable data by javascript*/
     readTextFile: function (file, callback) {
@@ -248,7 +250,7 @@ var game = {
             console.log("Current level is: " + this.level);
             console.log("^^^^^^^^^^^^^_____^^^^^^^^^^^^");
             //            alert("level right before div change "+this.level)
-            
+
             if (game.moneyHolder[this.level].classList.contains('backGround')) {
                 game.moneyHolder[this.level].classList.remove('backGround');
                 game.moneyHolder[this.level - 1].classList.add('backGround');
@@ -256,10 +258,10 @@ var game = {
                 this.youAreCorrect();
                 this.userMoney = game.moneyHolder[this.moneyLevel].getAttribute('value');
                 var bankMoney2 = confirm('Do You Wish To Bank Money?' + this.userMoney);
-                
-                
-                
-                   if(bankMoney2){
+
+
+
+                if (bankMoney2) {
                     game.takeMoney = parseInt(game.takeMoney);
                     game.takeMoney += parseInt(game.userMoney);
                     //                     if (game.moneyHolder[this.level+1].classList.contains('backGround')) {
@@ -269,9 +271,9 @@ var game = {
                     this.level = 9;
                     this.moneyLevel = 9;
                     game.moneyBank[0].innerHTML = '$' + this.takeMoney;
-                
-                   }
-                
+
+                }
+
                 //                alert("level of money "+this.level)
                 this.level = (parseInt(this.level) - 1);
                 game.getData();
@@ -367,8 +369,8 @@ var game = {
 
             game.moneyHolder = document.getElementsByClassName('bank2');
             game.level = game.moneyHolder.length
-           // alert("Bank 2 " + game.level);
-            //game.moneyHolder[game.level].classList.add('backGround');
+                // alert("Bank 2 " + game.level);
+                //game.moneyHolder[game.level].classList.add('backGround');
         }
 
     },
@@ -395,12 +397,15 @@ var game = {
         this.popup.classList.remove('hide');
     },
     youAreCorrect() {
-        var message = document.querySelector('#message');
         var messageheader = document.querySelector('#messageHeader');
-        var messagefooter = document.querySelector('#messageFooter');
+        var message = document.querySelector('#messageDis');
+        var fact = document.querySelector('#factDis');
+
         messageheader.innerHTML = "You Are Correct";
-        message.innerHTML = this.fact;
-      //  messagefooter.innerHTML = "Do You Wish To Bank "+this.userMoney+" ?";
+        message.innerHTML = "Do You Wish To Bank $" + this.userMoney + " ?";
+        if (!this.fact) {
+            fact.innerHTML = this.fact;
+        }
         this.popup.classList.remove('hide');
     }
 
@@ -422,12 +427,9 @@ window.onclick = function (event) {
 var beep = new Audio;
 beep.src = "Music/gsound.mp3";
 
-
-
 // beep.autoplay = true;
 
 //beep.autoplay = true;
-
 
 function playm() {
     beep.autoplay = false;
@@ -441,5 +443,4 @@ function playm() {
     }
 
 }
-
 document.getElementById("sound").onmousedown = playm;
