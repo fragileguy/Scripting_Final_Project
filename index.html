@@ -16,24 +16,29 @@
     </section>
     
     <div id="container" class="container border">
-      <figure id="volume" class="">
+      <div id="volume" class="">
         <img src="Images/volume_on.png" id="sound" alt="volume_on">
         <div>Time to answer question <span id="time">02:00</span> minutes!</div>
-      </figure>
+          <div>Round: <span class="round">1</span></div>
+      </div>
 	   
       <section id="form" class="border centerTag">
        <h2 class="centerTag center">Enter Your Details</h2>
         <div class="centerTag center">
-           <input type"text" id="firstName" placeholder="Enter Your First Name" /> 
+           <input type="text" id="firstName" class="info" placeholder="Enter Your First Name" /> 
+           <div class="error"></div>
         
-            <input type="text" id="lastName" placeholder="Enter Your Last name "/>
+            <input type="text" id="lastName" class="info" placeholder="Enter Your Last name "/>
+            <div class="error"></div>
         </div>
         <div class="centerTag center">
-            <input type="number" id="age" max="100" min="1" placeholder="Enter Your Age"/> 
+            <input type="number" class="info" id="age" max="100" min="1" placeholder="Enter Your Age"/> 
+            <div class="error"></div>
             <span>
             <span>Sex: </span>
             <input type="radio" class="sex" value="male"/>Male<input type="radio" class="sex" value="female"/>Female
             </span>
+            <div class="error"></div>
         </div>
     </section>
       <section id="game" class="wrapper border centerTag center">
@@ -60,7 +65,7 @@
               <div class="bank2 moneyTree centerTag center border backGround" value="0">$0</div>
               
               
-              <div class="bank2 bank oval centerTag center border">$0</div>
+              <div class="bank oval centerTag center border">$0</div>
           </aside>
 
           <artilce id="gameWrapper" class="gameWrapper  border">
