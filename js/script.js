@@ -20,7 +20,7 @@ document.getElementById("butt_rules").onclick = function () {
 }
 document.getElementById("start_game").onclick = function () {
         
-        if(validate){
+        if(validate()){
             showGame();
         game.readTextFile();
         game.getData();
@@ -42,11 +42,13 @@ function validate() {
     var error = document.getElementsByClassName('error');
     var info = document.getElementsByClassName('info');
     var firstName = info[0].value;
+    alert(firstName);
     var val=true;
     
     var reg = /^[a-zA-Z ]{1,15}$/
     if (firstName == "" || firstName == null) {
-        error[0].setAttribute('placeholder', 'You Must Enter First Name');
+        //info[0].getAt('placeholder');
+        error[0].innerHTML="You Must Enter First Name";
         val = false;
         if (reg.test(firstName)) {
           info[0].setAttribute('placeholder', firstName+'doesnt match requirments, re-enter');
