@@ -38,7 +38,7 @@ document.getElementById("start_game").onclick = function () {
             game.readTextFile();
             game.getData();
             game.startTimer();
-			
+
             if (!form.classList.contains('hide')) {
                 form.classList.add('hide');
             }
@@ -128,12 +128,12 @@ if (typeof (Storage) !== "undefined") {
 }
 //object class start
 var game = {
-    time: 10,
+    time: 60,
     x: "",
     question: "",
     choice: "",
     id: "",
-    round: "",
+    round: 1,
     fact: "",
     data: "",
     userMoney: "",
@@ -142,6 +142,7 @@ var game = {
     questionArray: [],
     moneyHolder: document.getElementsByClassName('moneyTree'),
     bank2: document.getElementsByClassName('bank2'),
+    bankMoney2: document.getElementById('bank2'),
     level: 8,
     moneyLevel: 9,
     moneyBank: document.getElementsByClassName('bank'),
@@ -177,9 +178,9 @@ var game = {
             game.displayQuest(gameQ);
         });
         this.nextStage();
-        if (this.completed) {
+       /* if (this.completed) {
             this.level = 5;
-        }
+        }*/
 
     }, //end showData
 
@@ -250,24 +251,49 @@ var game = {
 
             console.log("Current level is: " + this.level);
             console.log("^^^^^^^^^^^^^_____^^^^^^^^^^^^");
-            if (game.moneyHolder[this.level].classList.contains('backGround')) {
-                game.moneyHolder[this.level].classList.remove('backGround');
-                game.moneyHolder[this.level - 1].classList.add('backGround');
-                this.moneyLevel = this.moneyLevel - 1;
-				
-                this.userMoney = game.moneyHolder[this.moneyLevel].getAttribute('value');
-				
-				game.stopTimer();
-  				this.youAreCorrect();
-				
+            alert('game level round 2: ' + game.level+"And Round: "+this.round);
+            if (this.round == 1) {
+                if (game.moneyHolder[game.level].classList.contains('backGround')) {
+                    game.moneyHolder[game.level].classList.remove('backGround');
+                    game.moneyHolder[game.level - 1].classList.add('backGround');
+                    game.moneyLevel = game.moneyLevel - 1;
 
-                /*game.level=9
-                game.moneyLevel*/
-                
-                this.level = (parseInt(this.level) - 1);
-                game.getData();
-				
-            } //end if statment
+                    game.userMoney = game.moneyHolder[game.moneyLevel].getAttribute('value');
+
+                    game.stopTimer();
+                    game.youAreCorrect();
+
+
+                   /* game.level = 9
+                    game.moneyLevel*/
+
+                    game.level = (parseInt(game.level) - 1);
+                    game.getData();
+
+                } //end if statment
+            } else if (this.round == 2) {
+                if (game.bank2[this.level].classList.contains('backGround')) {
+                    game.bank2[this.level].classList.remove('backGround');
+                    game.bank2[this.level - 1].classList.add('backGround');
+                    this.moneyLevel = this.moneyLevel - 1;
+
+                    this.userMoney = game.bank2[this.moneyLevel].getAttribute('value');
+
+                    game.stopTimer();
+                    this.youAreCorrect();
+
+                    /*game.level=9
+                    game.moneyLevel*/
+
+                    this.level = (parseInt(this.level) - 1);
+                    game.getData();
+
+                } //end if statment
+            }else{
+                alert("something went wrong");
+            }
+
+
         } else {
             //alert("wrong bro go home");
             //this.youLose();
@@ -276,7 +302,6 @@ var game = {
 
         }
     }, //end function 
-
     /*ifQuestionAsked accepts two args 'asked' which is the question about to be displayed includes method is used to compare existence */
     ifQuestionAsked: function (asked, data) {
         console.log("/--Question " + asked + " has been asked--/");
@@ -296,9 +321,6 @@ var game = {
 
         return qasked;
     },
-
-
-
     /*Function times needs to be worked on*/
     startTimer: function () {
 
@@ -322,7 +344,7 @@ var game = {
 
             // If the count down is over, write some text 
             if (game.time == -1) {
-                var completed = false;
+//                var completed = false;
                 clearInterval(game.x);
 
                 if (this.completed) {
@@ -331,7 +353,9 @@ var game = {
                 }
                 if (!this.completed) {
                     game.showRoundTwo();
-                    game.time = 120;
+                    game.time = 240;
+                    game.level = 5;
+                    game.moneyLevel = 6;
                     this.completed = true;
                 }
 
@@ -347,14 +371,15 @@ var game = {
     },
     stopTimer: function () {
         clearInterval(game.x);
-		return;
+        return;
     },
     showRoundTwo: function () {
         var bank = document.getElementsByClassName('bankWrapper');
         if (bank[1].classList.contains('hide')) {
             bank[1].classList.remove('hide');
             bank[0].classList.add('hide');
-
+            var bankInfo = document.getElementsByClassName('bank3')[0];
+            bankInfo.innerHTML = "$" + game.takeMoney;
             game.round = 2;
             document.querySelector('.round').innerHTML = game.round;
 
@@ -388,13 +413,13 @@ var game = {
         this.popup.classList.remove('hide');
     },
     youAreCorrect() {
-	   
+
         var messageheader = document.querySelector('#messageHeader');
         var message = document.querySelector('#messageDis');
         var fact = document.querySelector('#factDis');
-		
+
         messageheader.innerHTML = "You Are Correct";
-			
+
         if (this.userMoney != 0) {
             message.innerHTML = "Do You Wish To Bank $" + this.userMoney + " ?";
             this.option[0].onclick = function () {
@@ -403,13 +428,27 @@ var game = {
                     game.takeMoney = parseInt(game.takeMoney);
                     game.takeMoney += parseInt(game.userMoney);
 
-                    game.moneyBank[0].innerHTML = '$' + game.takeMoney;
+
                     game.moneyHolder[game.level].classList.remove('backGround');
-                    game.moneyHolder[8].classList.add('backGround');
-                    game.level = 8;
-                    game.moneyLevel = 9;
-					game.userMoney="";
-					
+
+                    if (game.round==2) {
+                        game.moneyHolder[5].classList.add('backGround');
+                        alert("money to put " + game.takeMoney);
+                        game.bankMoney2.innerHTML = '$' + game.takeMoney;
+                        game.level = 5;
+                        game.moneyLevel = 6;
+                        game.userMoney = "";
+                    }
+                    else if(game.round ==1){
+                        game.moneyBank[0].innerHTML = '$' + game.takeMoney;
+                        game.moneyHolder[8].classList.add('backGround');
+                        game.level = 8;
+                        game.moneyLevel = 9;
+                        game.userMoney = "";
+                    }else{
+                        alert("Error with round");
+                    }
+
                 }
 
             }
@@ -417,18 +456,17 @@ var game = {
                 game.choice = game.option[1].getAttribute('value');
                 if (game.choice == 'NO' || game.choice == 'NO') {
                     console.log(game.choice);
-                    game.opt = false;
                 }
             }
-        }else{
-			message.innerHTML = "You cannot bank $" + this.userMoney ;
-		
-		}
+        } else {
+            message.innerHTML = "You cannot bank $" + this.userMoney;
+
+        }
         if (this.fact) {
             fact.innerHTML = this.fact;
         }
         this.popup.classList.remove('hide');
-		
+
     } //end function you are correct
 
 }; //end object
@@ -436,7 +474,7 @@ var span = document.getElementsByClassName('close')[0];
 span.onclick = function () {
     if (!game.popup.classList.contains('hide')) {
         game.popup.classList.add('hide');
-		game.startTimer();
+        game.startTimer();
         // hideGame();
     }
 }
