@@ -1,7 +1,11 @@
 var gameWrapper = document.querySelector('#game');
 var form = document.querySelector('#form');
 var rules = document.querySelector('#rules');
+var error = document.getElementsByClassName('error');
+var info = document.getElementsByClassName('info');
+var info2 = document.getElementsByName('info');
 
+//alert(firstName);
 if (!gameWrapper.classList.contains('hide')) {
     gameWrapper.classList.remove('center');
     gameWrapper.classList.add('hide');
@@ -19,19 +23,19 @@ document.getElementById("butt_rules").onclick = function () {
 
 }
 document.getElementById("start_game").onclick = function () {
-        
-        if(validate()){
+
+        if (validate()) {
             showGame();
-        game.readTextFile();
-        game.getData();
-        game.startTimer();
-        if (!form.classList.contains('hide')) {
-            form.classList.add('hide');
-        }
-        if (!rules.classList.contains('hide')) {
-            rules.classList.add('hide');
-        }
-    
+            game.readTextFile();
+            game.getData();
+            game.startTimer();
+            if (!form.classList.contains('hide')) {
+                form.classList.add('hide');
+            }
+            if (!rules.classList.contains('hide')) {
+                rules.classList.add('hide');
+            }
+
         }
 
 
@@ -39,29 +43,26 @@ document.getElementById("start_game").onclick = function () {
 
     } //end onclick function start game
 function validate() {
-    var error = document.getElementsByClassName('error');
-    var info = document.getElementsByClassName('info');
     var firstName = info[0].value;
-    alert(firstName);
-    var val=true;
-    
+var LastName = info[1].value;
+    var val = true;
     var reg = /^[a-zA-Z ]{1,15}$/
     if (firstName == "" || firstName == null) {
-        //info[0].getAt('placeholder');
-        error[0].innerHTML="You Must Enter First Name";
+        info[0].setAttribute('placeholder', 'You Must Enter Your First Name');
         val = false;
-        if (reg.test(firstName)) {
-          info[0].setAttribute('placeholder', firstName+'doesnt match requirments, re-enter');
-            val =false;
+
+    } else if (firstName != "" || firstName != null) {
+        if (!reg.test(firstName)) {
+            info[0].setAttribute('placeholder', firstName + 'doesnt match requirments, re-enter');
+            error[0].innerHTML='Doesnt match requirments, re-enter';
+            val = false;
         } else {
             info[0].setAttribute('placeholder', 'Enter Your First Name');
         }
     } else {
         info[0].setAttribute('placeholder', 'Enter Your First Name');
-
     }
-    
-    if(val){
+    if (val) {
         return val;
     }
 }
@@ -115,7 +116,7 @@ if (typeof (Storage) !== "undefined") {
     // Code for localStorage/sessionStorage.
 
     if (localStorage.lastname) {
-        alert("Hi Welcome back " + localStorage.lastname);
+       // alert("Hi Welcome back " + localStorage.lastname);
     } else {
         var lname = prompt("Enter Your Name bro");
         localStorage.lastname = lname;
@@ -146,7 +147,8 @@ var game = {
     popup: document.getElementById('gameinfoHolder'),
     completed: false,
     takeMoney: 0,
-
+    bankMoney: document.getElementsByClassName('response'),
+    
     /*function using http protocol to get and reads json file raw stored locally, this function is
 	used by the getData function to convert json to readable data by javascript*/
     readTextFile: function (file, callback) {
@@ -246,27 +248,30 @@ var game = {
             console.log("Current level is: " + this.level);
             console.log("^^^^^^^^^^^^^_____^^^^^^^^^^^^");
             //            alert("level right before div change "+this.level)
-            alert("Round two level variable before background class " + this.level)
-
+            
             if (game.moneyHolder[this.level].classList.contains('backGround')) {
                 game.moneyHolder[this.level].classList.remove('backGround');
                 game.moneyHolder[this.level - 1].classList.add('backGround');
                 this.moneyLevel = this.moneyLevel - 1;
                 this.youAreCorrect();
                 this.userMoney = game.moneyHolder[this.moneyLevel].getAttribute('value');
-                var bankMoney = confirm('Do You Wish To Bank Money?' + this.userMoney);
-
-                if (bankMoney) {
-                    this.takeMoney = parseInt(this.takeMoney);
-                    this.takeMoney += parseInt(this.userMoney);
+                var bankMoney2 = confirm('Do You Wish To Bank Money?' + this.userMoney);
+                
+                
+                
+                   if(bankMoney2){
+                    game.takeMoney = parseInt(game.takeMoney);
+                    game.takeMoney += parseInt(game.userMoney);
                     //                     if (game.moneyHolder[this.level+1].classList.contains('backGround')) {
-                    game.moneyHolder[this.level].classList.remove('backGround');
+                    game.moneyHolder[game.level].classList.remove('backGround');
                     game.moneyHolder[8].classList.add('backGround');
                     //  }
                     this.level = 9;
                     this.moneyLevel = 9;
                     game.moneyBank[0].innerHTML = '$' + this.takeMoney;
-                }
+                
+                   }
+                
                 //                alert("level of money "+this.level)
                 this.level = (parseInt(this.level) - 1);
                 game.getData();
@@ -362,7 +367,7 @@ var game = {
 
             game.moneyHolder = document.getElementsByClassName('bank2');
             game.level = game.moneyHolder.length
-            alert("Bank 2 " + game.level);
+           // alert("Bank 2 " + game.level);
             //game.moneyHolder[game.level].classList.add('backGround');
         }
 
@@ -391,7 +396,11 @@ var game = {
     },
     youAreCorrect() {
         var message = document.querySelector('#message');
-        message.innerHTML = "You Are Correct " + this.fact;
+        var messageheader = document.querySelector('#messageHeader');
+        var messagefooter = document.querySelector('#messageFooter');
+        messageheader.innerHTML = "You Are Correct";
+        message.innerHTML = this.fact;
+        messagefooter.innerHTML = "Do You Wish To Bank "+this.userMoney+" ?";
         this.popup.classList.remove('hide');
     }
 
