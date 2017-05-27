@@ -7,7 +7,8 @@
 </head>
 
 <body>
-    <section id="gameinfoHolder" class="centerTag fadeIn hide">
+   <!----------------------popup-------------------->
+    <section id="popup" class="centerTag fadeIn hide">
         <div class="closeHolder">
             <span class="close">&times;</span>
         </div>
@@ -20,9 +21,9 @@
                 <div id="messageDis" class="center">
                     MESSAGE TO USER GOES HEREMESSAGE 
                 </div>
-                <div class="buttonHolder center">
-                    <input type="button" class="option" value="YES" />
-                    <input type="button" class="option" value="NO" />
+                <div class="buttonHolder">
+                    <input type="button" class="button button1 option" value="YES" />
+                    <input type="button" class="button button3 option" value="NO" />
                 </div>
             </div>
             <div id="fact" class="inlineBlock">
@@ -35,11 +36,12 @@
     </section>
 
     <div id="container" class="container">
-        <div id="volume" class="headerHolder">
+       <!---------------------header------------------>
+        <div id="header" class="headerHolder">
             <figure class="inlineBlock">
                 <img src="Images/volume_on.png" id="sound" alt="volume_on">
             </figure>
-            <div class="inlineBlock center">Time: <span id="time">02:00</span>
+            <div class="inlineBlock center">Time: <span id="time" class="">02:00</span>
             </div>
             <div class="inlineBlock center">Round:
                 <span class="round">1</span>
@@ -48,8 +50,8 @@
                 Hi: <span id="userName"></span>
             </div>
         </div>
-
-        <section id="form" class="centerTag">
+        <!-----------------------form------------------------>
+        <section id="form" class="centerTag fadeIn">
             <h2 class="centerTag center">Enter Your Details</h2>
             <div class="centerTag center">
                 <input type="text" id="firstName" class="info" placeholder="Enter Your First Name" />
@@ -63,12 +65,13 @@
                 <div class="error"></div>
                 <span>
             <span>Sex: </span>
-                <input type="radio" class="sex" value="male" />Male
-                <input type="radio" class="sex" value="female" />Female
+                <input type="radio" name="sex" class="sex" value="male" />Male
+                <input type="radio" name="sex" class="sex" value="female" />Female
                 </span>
                 <div class="error"></div>
             </div>
         </section>
+        <!---------------------rules----------------------->
         <section id="rules" class="centerTag hide">
             <h2 class="centerTag center">Game Rules</h2>
             <p class="centerTag center">
@@ -86,8 +89,10 @@
             </p>
 
         </section>
-        <section id="game" class="wrapper border centerTag center">
-            <aside class="bankWrapper  border" style="color: red">
+        <!-------------------game app------------------->
+        <section id="game" class="wrapper centerTag center">
+        <!-------------------bank money tree 1------------------->
+                <aside class="bankWrapper" style="color: red">
                 <div class="moneyTree centerTag center border" value="500000">$500000</div>
                 <div class="moneyTree centerTag center border" value="250000">$250000</div>
                 <div class="moneyTree centerTag center border" value="125000">$125000</div>
@@ -101,6 +106,7 @@
 
                 <div class="bank oval centerTag center border">$0</div>
             </aside>
+            <!-------------------bank money tree 2--------------->
             <aside class="bankWrapper border hide" style="color: red">
                 <div class="bank2 moneyTree centerTag center border" value="500000">$500000</div>
                 <div class="bank2 moneyTree centerTag center border" value="125000">$125000</div>
@@ -112,8 +118,8 @@
 
                 <div id="bank2" class="bank3 oval centerTag center border">$0</div>
             </aside>
-
-            <artilce id="gameWrapper" class="gameWrapper  border">
+            <!------------------question and answer------------->
+            <artilce id="gameWrapper" class="gameWrapper">
                 <div class="question centerTag center border">
                     Question Here
                 </div>
@@ -125,10 +131,10 @@
 
             </artilce>
         </section>
-
+        <!------------- start and rule buttons ------------->
         <section id="gameControl" class="control center">
-            <input type="button" id="start_game" class="" value="START GAME" />
-            <input type="button" class="" value="RULES" id="butt_rules" />
+            <input type="button" id="start_game" class="button button1" value="START GAME" />
+            <input type="button" class="button button2" value="RULES" id="butt_rules" />
         </section>
 
     </div>

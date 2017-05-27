@@ -10,10 +10,26 @@
     font-weight: 400;
     src: local('Racing Sans One'), local('RacingSansOne-Regular'), /*url(http://really-long-url.woff) format('woff');*/
 }
+@font-face {
+    font-family: DeliciousRoman;
+    src: url(http://www.font-face.com/fonts/delicious/Delicious-Roman.otf);
+    font-weight:400;
+}
+@font-face {
+   font-family: sansation;
+   src: url(sansation_light.woff);
+}
+@font-face {
+	font-family: 'NothingYouCouldDo1';
+	src: url('./fonts/NothingYouCouldDo1.eot');
+	src: local('NothingYouCouldDo1'), url('./fonts/NothingYouCouldDo1.woff') format('woff'), url('./fonts/NothingYouCouldDo1.ttf') format('truetype');
+}
 body {
     background: url(../Images/bg.jpg) no-repeat center fixed;
     background-size: cover;
+    font-family: 'NothingYouCouldDo1';
 }
+/*--------------------defaults------------------*/
 .border {
     border: solid;
     border-color: black;
@@ -39,6 +55,7 @@ body {
 .inlineBlock {
     display: inline-block;
 }
+/*--------------header info------------------*/
 .container {
     width: 100%;
     height: 100%;
@@ -46,6 +63,9 @@ body {
 #container {
     position: absolute;
     z-index: 1;
+}
+#header{
+    
 }
 .headerHolder {
     width: 100%;
@@ -65,11 +85,11 @@ body {
     box-sizing: border-box;
 }
 .headerHolder > div {
-    width: 15%;
+    width: 17%;
     /*    height: 10%;*/
     position: relative;
-    left: 15%;
-    font-size: 20pt;
+    left: 13%;
+    font-size: 100%;
     color: aliceblue;
     border-radius: 10em / 5em;
     padding-left: 2%;
@@ -78,6 +98,7 @@ body {
 .headerHolder > div:nth-child(4) {
     width: 30%;
 }
+/*--------------------form------------------*/
 #form {
     top: 10%;
     position: relative;
@@ -86,32 +107,53 @@ body {
 }
 #form > h2 {
     margin-top: 2%;
-    font-size: 38pt;
-    color: chartreuse;
+    font-size: 200%;
+    color: #4CAF50;
 }
 #form > div,
 h2 {
     height: 15%;
     width: inherit;
-    /*    border: solid;*/
-    margin-top: 5%
+    margin-top: 5%;
+    font-size: 100%;
 }
 #form > div > input {
     border-left: none;
     border-top: none;
     border-right: none;
+    border-bottom: 2px solid #4CAF50;
     width: 50%;
+    padding: .5% 0% 0% 0%;
     outline: none;
     margin-left: 2%;
     background-color: transparent;
-    font-size: 28pt;
-    color: chartreuse;
+    font-size: 100%;
+    font-weight: 900;
+    color: #996600;
     text-transform: uppercase;
+    font-family: 'NothingYouCouldDo1';
 }
 #form > div > span {
     margin-left: 2%;
-    color: floralwhite;
-    font-size: 28pt;
+    color: #996600;
+    font-size: 100%;
+}
+#form > div > input::-webkit-input-placeholder {
+    font-family: 'NothingYouCouldDo1';
+    color: #996600 !important;
+}
+ 
+#form > div > input:-moz-placeholder { /* Firefox 18- */
+    font-family: 'NothingYouCouldDo1';
+}
+ 
+#form > div > input::-moz-placeholder {  /* Firefox 19+ */
+    font-family: 'NothingYouCouldDo1';
+}
+ 
+#form > div > input:-ms-input-placeholder {  
+    font-family: 'NothingYouCouldDo1';
+    color: #996600 !important;
 }
 /*---------rules----------------*/
 
@@ -126,15 +168,15 @@ h2 {
     position: relative;
     top: -10%;
     font-size: 28pt;
-    color: darkorange;
+    color: #e7e7e7;
 }
 #rules > p,
 ul {
     position: relative;
     width: 90%;
 }
-/*------------game--------*/
 
+/*------------game--------*/
 #game {
     /*display: none;*/
     position: relative;
@@ -180,7 +222,7 @@ ul {
     height: 90%;
 }
 .backGround {
-    background: orange;
+    background: #ff9900;
 }
 .moneyTree:nth-child(1) {
     width: 60%;
@@ -216,6 +258,7 @@ ul {
     top: 2%;
     color: #000;
     background-color: #fed;
+    padding: 5px;
 }
 .answer1,
 .answer2,
@@ -227,32 +270,67 @@ ul {
     color: #00;
     background-color: #edf;
 }
-.control {
+/*-----------start and rule buttons-----------*/
+#gameControl{
     position: fixed;
     left: 20%;
     bottom: 0px;
     height: 15%;
     width: 60%;
 }
-.control input {
+.button {
+    background-color: #4CAF50; /* Green */
     border: none;
-    height: 40%;
-    padding: 0 3.5%;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+/*    display: inline-block;*/
+    font-size: 100%;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s; /* Safari */
+    transition-duration: 0.4s;
     cursor: pointer;
-    font-family: 'Racing Sans One';
-    outline: none;
+    font-family: 'NothingYouCouldDo1';
 }
-.control > #start_game {
+.button1 {
+    background-color: transparent; 
+    color: black; 
+    border: 2px solid #4CAF50;
+}
+.button1:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+.button2 {
+    background-color: transparent; 
+    color: black; 
+    border: 2px solid #e7e7e7;
+}
+.button2:hover {
+    background-color: #e7e7e7;
+    
+}
+.button3 {
+    background-color: white; 
+    color: black; 
+    border: 2px solid #f44336;
+}
+
+.button3:hover {
+    background-color: #f44336;
+    color: white;
+}
+#start_game {
     position: relative;
-    background-color: chartreuse;
     left: -35%;
 }
-.control > #butt_rules {
+#butt_rules {
     position: relative;
-    background-color: darkorange;
     left: 35%;
 }
-#gameInfoHolder {
+/*-----------------popup------------------*/
+#popup {
     position: absolute;
     width: 90%;
     height: 70%;
@@ -265,17 +343,17 @@ ul {
     animation-fill-mode: both;
     z-index: 2;
 }
-#gameInfoHolder > div.closeHolder {
+#popup > div.closeHolder {
     width: 100%;
     height: 8%;
     padding-right: 5px;
     text-align: right;
 }
-#gameInfoHolder > div > .close {
+#popup > div > .close {
     font-size: 28px;
     cursor: pointer;
 }
-#gameInfoHolder > #messageHeader {
+#popup > #messageHeader {
     width: inherit;
     color: chartreuse;
 }
@@ -297,28 +375,10 @@ ul {
     width: 100%;
     height: 65%;
     position: relative;
+    word-wrap: break-word;
 }
 .buttonHolder {
     width: 100%;
-}
-.buttonHolder > input {
-    width: 45%;
-    padding: 3%;
-    border: none;
-    cursor: pointer;
-    outline: none;
-}
-.buttonHolder > input:nth-Child(1) {
-    background-color: darkgreen;
-}
-.buttonHolder > input:nth-Child(2) {
-    background-color: darkred;
-}
-.buttonHolder > input:nth-Child(1):hover {
-    background-color: chartreuse;
-}
-.buttonHolder > input:nth-Child(2):hover {
-    background-color: crimson;
 }
 #fact {
     position: absolute;
@@ -343,6 +403,7 @@ ul {
     width: 100%;
     height: 70%;
     position: relative;
+    word-wrap: break-word;
 }
 .fadeIn {
     -webkit-animation-name: fadeIn;

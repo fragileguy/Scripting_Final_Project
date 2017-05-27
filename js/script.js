@@ -52,6 +52,8 @@ document.getElementById("start_game").onclick = function () {
         var correct = document.getElementsByClassName("answer");
 
     } //end onclick function start game
+
+/*----------validate form---------*/
 function validate() {
     firstName = info[0].value;
     LastName = info[1].value;
@@ -78,7 +80,7 @@ function validate() {
     }
 }
 
-
+/*------shows game--------------*/
 function showGame() {
 
     var gameRule = document.querySelector('#gameControl');
@@ -91,6 +93,7 @@ function showGame() {
     }
 }
 
+/*-----hides Game----------------*/
 function hideGame() {
     var gameRule = document.querySelector('#gameControl');
     if (gameRule.classList.contains('hide')) {
@@ -107,11 +110,11 @@ function hideGame() {
 
 } //end hide game
 
-
 window.onload = function () {
 
 };
 
+/*-------------local storage--------------*/
 if (typeof (Storage) !== "undefined") {
     // Code for localStorage/sessionStorage.
 
@@ -126,9 +129,9 @@ if (typeof (Storage) !== "undefined") {
     // Sorry! No Web Storage support..
     console.log("Sorry, your browser does not support web storage...");
 }
-//object class start
+/*-------------------game object--------------------------*/
 var game = {
-    time: 60,
+    time: 5,
     x: "",
     question: "",
     choice: "",
@@ -146,7 +149,7 @@ var game = {
     level: 8,
     moneyLevel: 9,
     moneyBank: document.getElementsByClassName('bank'),
-    popup: document.getElementById('gameinfoHolder'),
+    popup: document.getElementById('popup'),
     completed: false,
     opt: false,
     takeMoney: 0,
@@ -178,9 +181,9 @@ var game = {
             game.displayQuest(gameQ);
         });
         this.nextStage();
-       /* if (this.completed) {
-            this.level = 5;
-        }*/
+        /* if (this.completed) {
+             this.level = 5;
+         }*/
 
     }, //end showData
 
@@ -251,7 +254,7 @@ var game = {
 
             console.log("Current level is: " + this.level);
             console.log("^^^^^^^^^^^^^_____^^^^^^^^^^^^");
-            alert('game level round 2: ' + game.level+"And Round: "+this.round);
+            alert('game level round 2: ' + game.level + "And Round: " + this.round);
             if (this.round == 1) {
                 if (game.moneyHolder[game.level].classList.contains('backGround')) {
                     game.moneyHolder[game.level].classList.remove('backGround');
@@ -264,8 +267,8 @@ var game = {
                     game.youAreCorrect();
 
 
-                   /* game.level = 9
-                    game.moneyLevel*/
+                    /* game.level = 9
+                     game.moneyLevel*/
 
                     game.level = (parseInt(game.level) - 1);
                     game.getData();
@@ -289,7 +292,16 @@ var game = {
                     game.getData();
 
                 } //end if statment
-            }else{
+            } else if (this.round == 3) {
+
+
+                game.stopTimer();
+                this.youAreCorrect();
+
+                /*game.level=9
+                game.moneyLevel*/
+                game.getData();
+            } else {
                 alert("something went wrong");
             }
 
@@ -344,19 +356,21 @@ var game = {
 
             // If the count down is over, write some text 
             if (game.time == -1) {
-//                var completed = false;
+                //                var completed = false;
                 clearInterval(game.x);
 
-                if (this.completed) {
+                if (game.completed && game.takeMoney!=0) {
                     game.showRoundThree();
                     game.time = 120;
-                }
-                if (!this.completed) {
+                }else if (!game.completed) {
                     game.showRoundTwo();
-                    game.time = 240;
+                    game.time = 5;
                     game.level = 5;
                     game.moneyLevel = 6;
-                    this.completed = true;
+                    game.completed = true;
+                }else{
+                   
+                    game.youLose();
                 }
 
                 game.readTextFile();
@@ -409,7 +423,7 @@ var game = {
         this.level = 8;
     },
     youLose: function () {
-
+         
         this.popup.classList.remove('hide');
     },
     youAreCorrect() {
@@ -422,61 +436,82 @@ var game = {
 
         if (this.userMoney != 0) {
             message.innerHTML = "Do You Wish To Bank $" + this.userMoney + " ?";
+            
+                game.showButtons();
+            
             this.option[0].onclick = function () {
-                game.choice = game.option[0].getAttribute('value');
-                if (game.choice == 'YES' || game.choice == 'yes') {
-                    game.takeMoney = parseInt(game.takeMoney);
-                    game.takeMoney += parseInt(game.userMoney);
+                    game.choice = game.option[0].getAttribute('value');
+                    if (game.choice == 'YES' || game.choice == 'yes') {
+                        message.innerHTML = "You have banked $" + game.userMoney;
+                        game.hideButtons();
+                        game.takeMoney = parseInt(game.takeMoney);
+                        game.takeMoney += parseInt(game.userMoney);
 
 
-                    game.moneyHolder[game.level].classList.remove('backGround');
+                        game.moneyHolder[game.level].classList.remove('backGround');
 
-                    if (game.round==2) {
-                        game.moneyHolder[5].classList.add('backGround');
-                        alert("money to put " + game.takeMoney);
-                        game.bankMoney2.innerHTML = '$' + game.takeMoney;
-                        game.level = 5;
-                        game.moneyLevel = 6;
-                        game.userMoney = "";
-                    }
-                    else if(game.round ==1){
-                        game.moneyBank[0].innerHTML = '$' + game.takeMoney;
-                        game.moneyHolder[8].classList.add('backGround');
-                        game.level = 8;
-                        game.moneyLevel = 9;
-                        game.userMoney = "";
-                    }else{
-                        alert("Error with round");
-                    }
+                        if (game.round == 2) {
+                            game.moneyHolder[5].classList.add('backGround');
+                            alert("money to put " + game.takeMoney);
+                            game.bankMoney2.innerHTML = '$' + game.takeMoney;
+                            game.level = 5;
+                            game.moneyLevel = 6;
+                            game.userMoney = "";
+                        } else if (game.round == 1) {
+                            game.moneyBank[0].innerHTML = '$' + game.takeMoney;
+                            game.moneyHolder[8].classList.add('backGround');
+                            game.level = 8;
+                            game.moneyLevel = 9;
+                            game.userMoney = "";
+                        } else {
+                            alert("Error with round");
+                        }
 
-                }
+                    } //end if yes
 
-            }
+                } //end onclick event yes button
             this.option[1].onclick = function () {
                 game.choice = game.option[1].getAttribute('value');
                 if (game.choice == 'NO' || game.choice == 'NO') {
                     console.log(game.choice);
+                    hidePopup();
                 }
             }
+        } else if (game.round == 3) {
+            message.innerHTML = "You are playing for $" + game.takeMoney;
         } else {
             message.innerHTML = "You cannot bank $" + this.userMoney;
-
+            
+                game.hideButtons();
+            
         }
         if (this.fact) {
             fact.innerHTML = this.fact;
         }
         this.popup.classList.remove('hide');
 
-    } //end function you are correct
+    }, //end function you are correct
+    hideButtons: function () {
+        if (!game.option[0].classList.contains('hide') && !game.option[1].classList.contains('hide')) {
+            game.option[0].classList.add('hide');
+            game.option[1].classList.add('hide');
+        }
+
+    },
+    showButtons: function () {
+        if (game.option[0].classList.contains('hide') && game.option[1].classList.contains('hide')) {
+            game.option[0].classList.remove('hide');
+            game.option[1].classList.remove('hide');
+        }
+
+    }
 
 }; //end object
+
+/*----------show popup----------------*/
 var span = document.getElementsByClassName('close')[0];
 span.onclick = function () {
-    if (!game.popup.classList.contains('hide')) {
-        game.popup.classList.add('hide');
-        game.startTimer();
-        // hideGame();
-    }
+    hidePopup();
 }
 window.onclick = function (event) {
     if (event.target == game.popup) {
@@ -484,7 +519,15 @@ window.onclick = function (event) {
     }
 }
 
-//////////////////////////// AUDIO SETTINGS/////////////////////////////////////
+/*----------hide popup------------*/
+function hidePopup() {
+    if (!game.popup.classList.contains('hide')) {
+        game.popup.classList.add('hide');
+        game.startTimer();
+        // hideGame();
+    }
+}
+/*---------------AUDIO SETTINGS-----------------*/
 var beep = new Audio;
 beep.src = "Music/gsound.mp3";
 
