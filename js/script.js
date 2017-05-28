@@ -156,6 +156,7 @@ var game = {
     takeMoney: 0,
     bankMoney: document.getElementsByClassName('response'),
     option: document.getElementsByClassName('option'),
+    hidePopUp: false,
 
     /*function using http protocol to get and reads json file raw stored locally, this function is
 	used by the getData function to convert json to readable data by javascript*/
@@ -429,6 +430,7 @@ var game = {
         game.completed = false;
         game.takeMoney = 0;
         game.showBank();
+        game.hidePopUp=false;
     },
     youLose: function () {
         var message = document.querySelector('#messageDis');
@@ -443,8 +445,13 @@ var game = {
         messageheader.innerHTML = "You Lose";
         message.innerHTML = "<h1>You Have Been Deem The Weakest Link<h1>";
         game.hideButtons();
-        game.restartGame();
-        hideGame();
+        game.hidePopUp=true;
+        alert(game.hidePopup)
+        if(game.hidePopUp){
+            hideGame();
+            game.restartGame();
+        }
+        
 
     },
     youAreCorrect() {
@@ -547,6 +554,7 @@ var game = {
 var span = document.getElementsByClassName('close')[0];
 span.onclick = function () {
     hidePopup();
+    
 }
 window.onclick = function (event) {
     if (event.target == game.popup) {
