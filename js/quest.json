@@ -13,7 +13,8 @@
             "id": 2,
             "fact": "The Naparima Hill otherwise known as the San Fernando Hill is a 192-m Hill which lies at the centre of the city of San Fernando in Trinidad & Tobago",
             "pos":"1"
-		}, {
+		}, 
+		{
             "quest": "What is the number for the ambulance in Trinidad & Tobago?",
             "choice": ["911", "999", "990"],
             "id": 3,
@@ -26,7 +27,8 @@
             "id": 1,
             "fact": "Former political leader of the People's National Movement (PNM) Patrick Augustus Mervyn Manning having terms from 17 December 1991 to 9 November 1995 and from 24 December 2001 to 26 May 2010",
             "pos":"3"
-		}, {
+		}, 
+		{
             "quest": "Who gave San Fernando its current city name?",
             "choice": ["Don Jose Maria Chacon", "you", "God"],
             "id": 1,
@@ -41,10 +43,317 @@
 		},
         {
             "quest": "Who is the first president of Tobago?",
-            "choice": ["Tobago dont have a presidet", "Ellis Clarke ", "ANR Robisin"],
+            "choice": ["Tobago dont have a president", "Ellis Clarke ", "ANR Robinson"],
             "id": 2,
             "fact": "Ellis Emmanuel Innocent Clarke was the second and last Governor-General and was unamimously elected as president when Trinidad & Tobago became a Republic in 1976",
             "pos":"6"
+		},
+		{
+            "quest": "Who founded the United National Congress (UNC)?",
+            "choice": ["Kamla Persad-Bissessar", "Basdeo Panday", "Patrick Manning"],
+            "id": 2,
+            "fact": "On the first anniversary of CLUB 88, Basdeo Panday unveiled the symbol and announced the creation of the UNC Party at the Declaration of Aranguez on October 16, 1988.",
+            "pos":"7"
+		},
+		{
+            "quest": "Who wrote the National Anthem?",
+            "choice": ["Barack Obama", "Basdeo Panday", "Pat Castagne"],
+            "id": 3,
+            "fact": "The National Anthem was written to celebrate Trinidad and Tobago's independence from Great Britain on August 31, 1962. A nation-wide contest was held in search of the best anthem to accompany this momentous occasion. The winner of the contest was Patrick Stanisclaus Castagne.",
+            "pos":"8"
+		},
+		{
+            "quest": "What are the National Birds of Trinidad & Tobago?",
+            "choice": ["Scarlet Ibis & Cocrico", "Kiskadee & Humming Bird", "Scarlet Ibis & Mighty Eagle"],
+            "id": 1,
+            "pos":"9"
+		},
+		{
+            "quest": "Who founded the People's National Movement (PNM)?",
+            "choice": ["Kamla Persad-Bissessar", "Eric Williams", "Patrick Manning"],
+            "id": 2,
+            "fact": "Sir Eric Williams founded the PNM in 1955. They won the 1956 General Elections and went on to hold power for an unbroken 30 years.",
+            "pos":"10"
+		},
+		{
+            "quest": "What year did George Bovell win Olympic Gold?",
+            "choice": ["2004", "2016", "George Bovell didn't win gold"],
+            "id": 3,
+            "pos":"11"
+		},
+		{
+            "quest": "How many Miss Universe titles have Trinidad & Tobago won?",
+            "choice": ["One", "Two", "Three"],
+            "id": 2,
+            "fact": "Janelle a.k.a. Penny Commissiong - 1977 & Wendy Fitzwilliam - 1998.",
+            "pos":"12"
+		},
+		{
+            "quest": "What street is the Port of Spain Hospital on?",
+            "choice": ["Frederick Street", "Mucurapo Street", "Charlotte Street"],
+            "id": 3,
+            "fact": "Port of Spain General Hospital was constructed in 1855.",
+            "pos":"13"
+		},
+		{
+            "quest": "When did we celebrate our first independence in T&T?",
+            "choice": ["31st August 1962", "1st April 2000", "Today"],
+            "id": 1,
+            "fact": "At midnight on the 30th August 1962, the Union Jack (British Flag) was lowered and the T&T flag raised for the first time.",
+            "pos":"14"
+		},
+		{
+            "quest": "Who was the first female to win Calypso Monarch in T&T?",
+            "choice": ["Kamla Persad-Bissessar", "Calypso Rose", "Denise Plumber"],
+            "id": 2,
+            "fact": "Calypso Rose (Mcartha Sandy-Lewis) won in 1978 with 'Her Majesty' as tune #1 & 'I Thank Thee' as tune #2.",
+            "pos":"15"
+		},
+		{
+            "quest": "What was the first capital of T&T?",
+            "choice": ["San Fernando", "Port of Spain", "St. Joseph"],
+            "id": 3,
+            "fact": "Originally named San Jose de Oruna it served as the capital of Spanish Trinidad between 1592 & 1783.",
+            "pos":"16"
+		}
+		,
+		{
+            "quest": "When was the coup in T&T?",
+            "choice": ["1990", "We never had a coup", "1999"],
+            "id": 1,
+            "fact": "The Jamaat al Muslimeen (lead by Abu Bakr) carried out an armed invasion in an attempt to overthrow the local government on July 27th 1990. This lasted for 6 days.",
+            "pos":"17"
+		},
+		{
+            "quest": "Which bird is on the $20 bill?",
+            "choice": ["Scarlet Ibis", "Humming Bird", "Hibiscus"],
+            "id": 2,
+            "fact": "$1 - Scarlet Ibis, $5 - Mot Mot, $10 - Cocrico, $20 - Humming Bird, $50 - Red-Capped Cardinal, $100 - Bird of Paradise.",
+            "pos":"18"
+		},
+		{
+            "quest": "Which bird is on the $50 bill?",
+            "choice": ["Red-Capped Cardinal", "Mighty Eagle", "Cocrico"],
+            "id": 1,
+            "fact": "$1 - Scarlet Ibis, $5 - Mot Mot, $10 - Cocrico, $20 - Humming Bird, $50 - Red-Capped Cardinal, $100 - Bird of Paradise.",
+            "pos":"19"
+		},
+		{
+            "quest": "Which bird is on the $100 bill?",
+            "choice": ["Kiskadee", "Pigeon", "Bird of Paradise"],
+            "id": 3,
+            "fact": "$1 - Scarlet Ibis, $5 - Mot Mot, $10 - Cocrico, $20 - Humming Bird, $50 - Red-Capped Cardinal, $100 - Bird of Paradise.",
+            "pos":"20"
+		},
+		{
+            "quest": "Who was the 3rd Prime Minister of T&T?",
+            "choice": ["Patrick Manning", "Prakash Ramadar", "ANR Robinson"],
+            "id": 3,
+            "fact": "ANR Robinson became the 3rd Prime Minister in T&T in 1986.",
+            "pos":"21"
+		},
+		{
+            "quest": "Which Trinidadian won the nobel prize in literature?",
+            "choice": ["V.S Naipaul", "Noor Hassanali", "George Bovell"],
+            "id": 1,
+            "fact": "V.S Naipaul won the nobel prize in 2001.",
+            "pos":"22"
+		},
+		{
+            "quest": "What is the name of the highway in Tobago?",
+            "choice": ["Uriah Butler Highway", "Claude Noel Highway", "Churchill-Roosevelt Highway"],
+            "id": 2,
+            "fact": "Claude Noel is a former tobagonian professional boxer, who held the WBA World Lightweight title and the Commonwealth Lightweight title.",
+            "pos":"23"
+		},
+		{
+            "quest": "In what year did Hasely Crawford win olympic gold?",
+            "choice": ["1976", "2000", "1967"],
+            "id": 1,
+            "fact": "Hasely Crawford became T&T's first olympic champion & the first olympic 100m champion from a caribbean country in 1976.",
+            "pos":"24"
+		},
+		{
+            "quest": "How many times has Patrick Manning been Prime Minister?",
+            "choice": ["1", "2", "3"],
+            "id": 3,
+            "fact": "Patrick Manning held office from 1991 - 1995, 2001 - 2005 & again 2005 - 2010.",
+            "pos":"25"
+		},
+		{
+            "quest": "What is the national symbol of T&T?",
+            "choice": ["Coat of Arms", "Scarlet Ibis", "Maracas Bay"],
+            "id": 1,
+            "fact": "T&T's Coat of Arms was designed by a designated committee including artists such as Carlyle Chang & George Bailey.",
+            "pos":"26"
+		},
+		{
+            "quest": "Who is the only person to serve as Prime Minister & President of T&T?",
+            "choice": ["ANR Robinson", "Noor Hassanali", "Basdeo Panday"],
+            "id": 1,
+            "fact": "ANR Robinson was the 3rd president serving 1997 - 2003 & 3rd prime minister serving 1986 - 1991.",
+            "pos":"27"
+		},
+		{
+            "quest": "What does the black on the National Flag symbolize?",
+            "choice": ["Water", "Earth", "Sky"],
+            "id": 2,
+            "fact": "The flag was chosen by the independence committee in 1962. Red, Black & White represent fire, earth & water.",
+            "pos":"28"
+		},
+		{
+            "quest": "How many Soca Monarch titles does Super Blue have?",
+            "choice": ["3", "6", "9"],
+            "id": 3,
+            "fact": "Austin Lyons aka Super Blue became infamous from his first foray into the calypso tent world in 1980 with 'Soca Baptiste'.",
+            "pos":"29"
+		},
+		{
+            "quest": "Brian Lara holds the highest individual score, in first-class cricket, with how many runs not out?",
+            "choice": ["299", "501", "499"],
+            "id": 2,
+            "fact": "In 1994, Brian Charles Lara achieved the highest first-class score in cricket history, 501 not out. He surpassed Hanif Mohammed's 499.",
+            "pos":"30"
+		},
+		{
+            "quest": "Where is the largest desposit of asphalt in T&T?",
+            "choice": ["The Pitch Lake", "The ground", "Queens Park Savannah"],
+            "id": 2,
+            "fact": "The La Brea Pitch :ake was discovered by Sir Walter Raleigh in 1595. It is the world's largest natural deposit of emilsified asphalt.",
+            "pos":"31"
+		},
+		{
+            "quest": "Which soca artist has the most Road March titles?",
+            "choice": ["Machel Montano", "Super Blue", "Lord Kitchened"],
+            "id": 3,
+            "fact": "Lord Kitchener has won 12 Road March titles.",
+            "pos":"32"
+		},
+		{
+            "quest": "What is the only musicsl instrument invented in the 20th Century?",
+            "choice": ["The Steel Pan", "The Violin", "The Recorder"],
+            "id": 1,
+            "fact": "The Steel Pan was created in the 1930's.",
+            "pos":"33"
+		},
+		{
+            "quest": "Who is the 7th prime minister of T&T?",
+            "choice": ["Kamla Persad-Bissessar", "Patrick Manning", "Keith Rowley"],
+            "id": 3,
+            "fact": "Keith Rowley won the elections in 2015, becoming the 7th Prime Minister of T&T.",
+            "pos":"34"
+		},
+		{
+            "quest": "Who was the 6th Prime Minister of T&T?",
+            "choice": ["Parick Manning", "Kamla Persad-Bissessar", "Keith Rowley"],
+            "id": 2,
+            "fact": "Kamla Persad-Bissessar won the elections in 2010, becoming the 6th Prime Minister of T&T.",
+            "pos":"35"
+		},
+		{
+            "quest": "In what year was the most recent 'state of emergency' in T&T?",
+            "choice": ["2011", "2009", "2000"],
+            "id": 1,
+            "fact": "On August 22st 2011, Prime Minister at the time Kamla Persad-Bissessar declare a nation wide State of Emergency.",
+            "pos":"36"
+		},
+		{
+            "quest": "Which swamp is the largest swamp in T&T?",
+            "choice": ["Caroni Swamp", "La Brea Pitch Lake", "Nariva Swamp"],
+            "id": 3,
+            "fact": "The Nariva Swamp was declared to be a forrest reserve in 1954 & is the largest freshwater wetland in T&T.",
+            "pos":"37"
+		},
+		{
+            "quest": "What year did Christopher Colombus rediscover Trinidad?",
+            "choice": ["1992", "1498", "1492"],
+            "id": 2,
+            "fact": "Christopher Colombus landed on our shores on his third voyage of exploration.",
+            "pos":"38"
+		},
+		{
+            "quest": "Where is the President's house located?",
+            "choice": ["Hyatt", "San Fernando Hill", "Botanical Gardens"],
+            "id": 3,
+            "fact": "The President's house was built between 1873 & 1876.",
+            "pos":"39"
+		},
+		{
+            "quest": "What are the colours of the maxis in T&T?",
+            "choice": ["Red, Yellow, Blue, Black, Green, Brown,", "Brown, Red, Orange, Black", "Red, White, Black"],
+            "id": 1,
+            "fact": "North - Yellow, Red. South - Brown, Green & Black. Tobago - Blue.",
+            "pos":"40"
+		},
+		{
+            "quest": "How many maxi bands/colors does T&T have?",
+            "choice": ["4", "6", "5"],
+            "id": 2,
+            "fact": "North - Yellow, Red. South - Brown, Green & Black. Tobago - Blue.",
+            "pos":"41"
+		},
+		{
+            "quest": "Which statue is located in Independence Square, PoS?",
+            "choice": ["Capt. Arthur Andrew Cipriani", "Statue of Liberty", "Wendy Fitzwilliam"],
+            "id": 1,
+            "fact": "Capt. Cipriani was a T&T labour leader & polotician. He founded the Trinidad Labour Party.",
+            "pos":"42"
+		},
+		{
+            "quest": "What year did T&T qualify for the World Cup?",
+            "choice": ["2014", "2002", "2006"],
+            "id": 3,
+            "fact": "The T&T 'Soca Warriors' reached the first round of the 2006 Fifa World Cup. We currently hold the record as the smallest nation to ever qualify for a Fifa World Cup.",
+            "pos":"43"
+		},
+		{
+            "quest": "What year was the reconstructed airport opened?",
+            "choice": ["2001", "1999", "2003"],
+            "id": 1,
+            "fact": "A major expansion of the airport, including the construction of a new terminal building, was completed in 2001. The old airport is used for cargo handling.",
+            "pos":"44"
+		},
+		{
+            "quest": "What is the national flower of T&T?",
+            "choice": ["Rose", "Balisier", "Chaconia"],
+            "id": 3,
+            "fact": "The Chaconia is titled in honor of the last spanish governor of T&T, Don Jose Maria Chacon.",
+            "pos":"45"
+		},
+		{
+            "quest": "What does CNC3 stand for?",
+            "choice": ["Communication News Network", "Cable News Cannel", "Caribbean News Channel"],
+            "id": 2,
+            "fact": "CNC3 was founded on Friday 26th September, 2005.",
+            "pos":"46"
+		},
+		{
+            "quest": "What year did Anthony Carmona begin his presidency?",
+            "choice": ["2013", "2010", "2014"],
+            "id": 1,
+            "fact": "Anthony Carmona is currently president, dated from Mach 18th 2013.",
+            "pos":"47"
+		},
+		{
+            "quest": "What is the name of the National Museum?",
+            "choice": ["The Royal Victoria Institute", "Queen's Hall", "NAPA"],
+            "id": 2,
+            "fact": "The Museum was established in 1892 as The Royal Victoria Institute.",
+            "pos":"48"
+		},
+		{
+            "quest": "Which is closer to Trinidad?",
+            "choice": ["Barbados", "Tobago", "Venezuela"],
+            "id": 3,
+            "fact": "The distance from Trinidad to Venezuela is 757.16 Km.",
+            "pos":"49"
+		},
+		{
+            "quest": "How many gold medalists does Trinidad have?",
+            "choice": ["1", "4", "2"],
+            "id": 3,
+            "fact": "Hasely Crawford - 1976. Keshawn Walcott - 2012.",
+            "pos":"50"
 		}
 	]
 }
