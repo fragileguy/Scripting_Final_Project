@@ -148,6 +148,7 @@ var game = {
     bankMoney2: document.getElementById('bank2'),
     level: 8,
     moneyLevel: 9,
+    roundThreeQu: 3,
     moneyBank: document.getElementsByClassName('bank'),
     popup: document.getElementById('popup'),
     completed: false,
@@ -256,6 +257,7 @@ var game = {
             console.log("^^^^^^^^^^^^^_____^^^^^^^^^^^^");
             alert('game level round 2: ' + game.level + "And Round: " + this.round);
             if (this.round == 1) {
+                alert("game level: "+game.level);
                 if (game.moneyHolder[game.level].classList.contains('backGround')) {
                     game.moneyHolder[game.level].classList.remove('backGround');
                     game.moneyHolder[game.level - 1].classList.add('backGround');
@@ -285,21 +287,14 @@ var game = {
                     game.stopTimer();
                     this.youAreCorrect();
 
-                    /*game.level=9
-                    game.moneyLevel*/
-
                     this.level = (parseInt(this.level) - 1);
                     game.getData();
 
                 } //end if statment
             } else if (this.round == 3) {
 
-
-                game.stopTimer();
                 this.youAreCorrect();
-
-                /*game.level=9
-                game.moneyLevel*/
+                this.roundThreeQu = (parseInt(this.roundThreeQu) - 1);
                 game.getData();
             } else {
                 alert("something went wrong");
@@ -359,18 +354,19 @@ var game = {
                 //                var completed = false;
                 clearInterval(game.x);
 
-                if (game.completed && game.takeMoney!=0) {
+                if (game.completed && game.takeMoney != 0) {
                     game.showRoundThree();
                     game.time = 120;
-                }else if (!game.completed) {
+                } else if (!game.completed) {
                     game.showRoundTwo();
                     game.time = 5;
                     game.level = 5;
                     game.moneyLevel = 6;
                     game.completed = true;
-                }else{
-                   
+                } else {
+
                     game.youLose();
+
                 }
 
                 game.readTextFile();
@@ -385,7 +381,7 @@ var game = {
     },
     stopTimer: function () {
         clearInterval(game.x);
-        return;
+        
     },
     showRoundTwo: function () {
         var bank = document.getElementsByClassName('bankWrapper');
@@ -416,15 +412,40 @@ var game = {
         }
     },
     restartGame: function () {
-
-        this.choice = "";
-        this.id = ""
-        this.questionArray = [];
-        this.level = 8;
+        clearInterval(game.x);
+        //game.time = 5;
+        game.x = "";
+        game.question = "";
+        game.choice = "";
+        game.id = "";
+        game.round = 1;
+        document.querySelector('.round').innerHTML = game.round;
+        game.fact = "";
+        game.data = "";
+        game.userMoney = "";
+        game.questionArray = [];
+        game.level = 8;
+        game.moneyLevel = 9;
+        game.completed = false;
+        game.takeMoney = 0;
+        game.showBank();
     },
     youLose: function () {
-         
+        var message = document.querySelector('#messageDis');
+        var popupHeader = document.getElementsByClassName('popHeader');
+        var messageheader = document.querySelector('#messageHeader');
+        var fact = document.querySelector('#factDis');
+
         this.popup.classList.remove('hide');
+        popupHeader[0].innerHTML = "";
+        popupHeader[1].innerHTML = "";
+        popupHeader[2].innerHTML = "";
+        messageheader.innerHTML = "You Lose";
+        message.innerHTML = "<h1>You Have Been Deem The Weakest Link<h1>";
+        game.hideButtons();
+        game.restartGame();
+        hideGame();
+
     },
     youAreCorrect() {
 
@@ -436,9 +457,9 @@ var game = {
 
         if (this.userMoney != 0) {
             message.innerHTML = "Do You Wish To Bank $" + this.userMoney + " ?";
-            
-                game.showButtons();
-            
+
+            game.showButtons();
+
             this.option[0].onclick = function () {
                     game.choice = game.option[0].getAttribute('value');
                     if (game.choice == 'YES' || game.choice == 'yes') {
@@ -446,8 +467,6 @@ var game = {
                         game.hideButtons();
                         game.takeMoney = parseInt(game.takeMoney);
                         game.takeMoney += parseInt(game.userMoney);
-
-
                         game.moneyHolder[game.level].classList.remove('backGround');
 
                         if (game.round == 2) {
@@ -478,12 +497,14 @@ var game = {
                 }
             }
         } else if (game.round == 3) {
-            message.innerHTML = "You are playing for $" + game.takeMoney;
+            message.innerHTML = "You are playing for $" + game.takeMoney+"\n"+game.roundThreeQu+" Question(s) left to win";
+            if(game.roundThreeQu==0){
+                message.innerHTML="You have won $"+game.takeMoney;
+                game.restartGame();
+            }
         } else {
             message.innerHTML = "You cannot bank $" + this.userMoney;
-            
-                game.hideButtons();
-            
+            game.hideButtons();
         }
         if (this.fact) {
             fact.innerHTML = this.fact;
@@ -504,6 +525,20 @@ var game = {
             game.option[1].classList.remove('hide');
         }
 
+    },
+    showBank:function(){
+        var bank = document.getElementsByClassName('bankWrapper');
+        if (!bank[1].classList.contains('hide')) {
+            bank[0].classList.remove('hide');
+            bank[1].classList.add('hide');
+        }
+    },
+    hideBank:function(){
+        var bank = document.getElementsByClassName('bankWrapper');
+        if (!bank[0].classList.contains('hide')) {
+            bank[0].classList.add('hide');
+            bank[1].classList.remove('hide');
+        }
     }
 
 }; //end object
