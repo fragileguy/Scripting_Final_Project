@@ -162,6 +162,10 @@ h2 {
     height: 70%;
     position: relative;
     top: 5%;
+	color:#020202;
+	background-color:d7d7d8;
+	height:auto;
+	margin-bottom:10%;
 }
 #rules > h2 {
     width: 90%;
@@ -170,11 +174,12 @@ h2 {
     font-size: 28pt;
     color: #e7e7e7;
 }
-#rules > p,
-ul {
-    position: relative;
-    width: 90%;
+#rules >h4 {
+	color:#00f000;
+	margin-top:25px;
+	
 }
+
 
 /*------------game--------*/
 #game {

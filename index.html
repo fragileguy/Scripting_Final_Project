@@ -1,4 +1,5 @@
 <html>
+<<<<<<< HEAD
 
 <head>
     <title>The Weakest Link Trinidad</title>
@@ -92,55 +93,228 @@
         <!-------------------game app------------------->
         <section id="game" class="wrapper centerTag center">
         <!-------------------bank money tree 1------------------->
+	
+	<head>
+		<title>The Weakest Link Trinidad</title>
+		<link rel="stylesheet" type="text/css" href="CSS/style.css?<?php echo time();?>">
+		
+	</head>
+	
+	<body>
+		<!----------------------popup-------------------->
+		<section id="popup" class="centerTag fadeIn hide">
+			<div class="closeHolder">
+				<span class="close">&times;</span>
+			</div>
+			<h1 id="messageHeader" class="center centerTag">
+				HEADER INFOMATION
+			</h1>
+			<div class="displayInfoWrapper centerTag">
+				<div id="message" class="inlineBlock">
+					<h2 class="center">BANKING</h2>
+					<div id="messageDis" class="center">
+						MESSAGE TO USER GOES HEREMESSAGE 
+					</div>
+					<div class="buttonHolder">
+						<input type="button" class="button button1 option" value="YES" />
+						<input type="button" class="button button3 option" value="NO" />
+					</div>
+				</div>
+				<div id="fact" class="inlineBlock">
+					<h2 class="center centerTag">FACT</h2>
+					<div id="factDis" class="">
+						FACT TO USER GOES HERE 
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<div id="container" class="container">
+			<!---------------------header------------------>
+			<div id="header" class="headerHolder">
+				<figure class="inlineBlock">
+					<img src="Images/volume_on.png" id="sound" alt="volume_on">
+				</figure>
+				<div class="inlineBlock center">Time: <span id="time" class="">02:00</span>
+				</div>
+				<div class="inlineBlock center">Round:
+					<span class="round">1</span>
+				</div>
+				<div class="inlineBlock center">
+					Hi: <span id="userName"></span>
+				</div>
+			</div>
+			<!-----------------------form------------------------>
+			<section id="form" class="centerTag fadeIn">
+				<h2 class="centerTag center">Enter Your Details</h2>
+				<div class="centerTag center">
+					<input type="text" id="firstName" class="info" placeholder="Enter Your First Name" />
+					<div class="error"></div>
+					
+					<input type="text" id="lastName" class="info" placeholder="Enter Your Last name " />
+					<div class="error"></div>
+				</div>
+				<div class="centerTag center">
+					<input type="number" class="info" id="age" max="100" min="1" placeholder="Enter Your Age" />
+					<div class="error"></div>
+					<span>
+						<span>Sex: </span>
+						<input type="radio" name="sex" class="sex" value="male" />Male
+						<input type="radio" name="sex" class="sex" value="female" />Female
+					</span>
+					<div class="error"></div>
+				</div>
+			</section>
+			
+			
+			
+			
+			<!---------------------rules----------------------->
+			<section id="rules" class="centerTag hide">
+				<h2 class="centerTag center">Game Rules</h2>
+				
+				
+				<h4>
+					HI welcome to the weakest link!
+				</h4>
+				
+				<p>
+					Thank you taking the time to read the rules of the game so you can enjoy yourself while learning other things 
+					you may not know.
+				</p>
+				
+				
+				
+				<h4>
+					Overview 
+				</h4>
+				
+				<p>
+					The game consists of three rounds. The first two rounds of the game are mandatory but the last is only accessible if 
+					you have money in the bank. 
+				</p>
+				
+				
+				<h4>
+					Bank
+				</h4>
+				
+				<p>
+					At the bottom of the first two rounds there is one element labelled "BANK". The bank is where you can place your money 
+					from the money tree to make you don't lose it when you answer a question wrongly.           
+				</p>
+				
+				
+				<h4>
+					Money Tree
+				</h4>
+				
+				<p>
+					The amount of money you earn will be shown on the "money tree". When you answer a question correctly your money tree level 
+					will go up by one. If your money tree level is not on $0 you will be given the choice to bank the bank or continue on, to 
+					increase the level of your money tree. 			
+				</p>
+				
+				
+				<h4>
+					Round 1
+				</h4>
+				
+				<p>
+					The first round of the game consists of nine levels in the money tree. As mention earlier to move up the money tree answer 
+					the questions correctly. If you don't your money tree will be reset to 0 and you lose the money from the money tree. The 
+					most you can bank from this round is $500,000. At the end of the round the money you have in your bank will be carried across
+					to round two. You will have two minutes to complete this task or bank $500,000 before the time runs out. Your extra time will
+					not carry over into round two.
+				</p>
+				
+				
+				
+				
+				<h4>
+					Round 2 
+				</h4>
+				
+				<p>
+				Just like round one you will be asked a series of questions the same rules apply. However, the money tree now has 6 levels. You 
+				will now be given 90 seconds to answer as many questions as possible. If at the end of this round you do not have any money in 
+				your bank you will be deem the weakest link and send back to the home page if not you will be carried into round three. Note this
+				round you can only bank up to $1,000,000 dollars.			
+				</p>
+				
+				
+				
+				
+				
+				<h4>
+					Round 3
+				</h4>
+				
+				<p>
+				You now have one minute to answer a series of questions. This is a sudden death round any wrong answer will be make you the 
+				weakest link. If you answer all the question you will be allowed to go away with all the money that you earned form the two 
+				rounds before. 			
+				</p>
+				
+			</section>
+			
+			
+			
+			
+			
+			
+			<!-------------------game app------------------->
+			<section id="game" class="wrapper centerTag center">
+				<!-------------------bank money tree 1------------------->
                 <aside class="bankWrapper" style="color: red">
-                <div class="moneyTree centerTag center border" value="500000">$500000</div>
-                <div class="moneyTree centerTag center border" value="250000">$250000</div>
-                <div class="moneyTree centerTag center border" value="125000">$125000</div>
-                <div class="moneyTree centerTag center border" value="75000">$75000</div>
-                <div class="moneyTree centerTag center border" value="50000">$50000</div>
-                <div class="moneyTree centerTag center border" value="10000">$10000</div>
-                <div class="moneyTree centerTag center border" value="5000">$5000</div>
-                <div class="moneyTree centerTag center border" value="1000">$1000</div>
-                <div class="moneyTree centerTag center border backGround" value="0">$0</div>
-
-
-                <div class="bank oval centerTag center border">$0</div>
-            </aside>
-            <!-------------------bank money tree 2--------------->
-            <aside class="bankWrapper border hide" style="color: red">
-                <div class="bank2 moneyTree centerTag center border" value="500000">$500000</div>
-                <div class="bank2 moneyTree centerTag center border" value="125000">$125000</div>
-                <div class="bank2 moneyTree centerTag center border" value="75000">$75000</div>
-                <div class="bank2 moneyTree centerTag center border" value="10000">$10000</div>
-                <div class="bank2 moneyTree centerTag center border" value="1000">$1000</div>
-                <div class="bank2 moneyTree centerTag center border backGround" value="0">$0</div>
-
-
-                <div id="bank2" class="bank3 oval centerTag center border">$0</div>
-            </aside>
-            <!------------------question and answer------------->
-            <artilce id="gameWrapper" class="gameWrapper">
-                <div class="question centerTag center border">
-                    Question Here
-                </div>
-                <div class="answer answer1 centerTag center border" value="1">Answer one here</div>
-                <br/>
-                <div class="answer answer2 centerTag center border" value="2">Answer two here</div>
-                <br/>
-                <div class="answer answer3 centerTag center border" value="3">Answer three here</div>
-
-            </artilce>
-        </section>
-        <!------------- start and rule buttons ------------->
-        <section id="gameControl" class="control center">
-            <input type="button" id="start_game" class="button button1" value="START GAME" />
-            <input type="button" class="button button2" value="RULES" id="butt_rules" />
-        </section>
-
-    </div>
-
-    <script src="js/script.js"></script>
-    <script type="text/javascript" src="js/quest.json"></script>
-</body>
-
+					<div class="moneyTree centerTag center border" value="500000">$500000</div>
+					<div class="moneyTree centerTag center border" value="250000">$250000</div>
+					<div class="moneyTree centerTag center border" value="125000">$125000</div>
+					<div class="moneyTree centerTag center border" value="75000">$75000</div>
+					<div class="moneyTree centerTag center border" value="50000">$50000</div>
+					<div class="moneyTree centerTag center border" value="10000">$10000</div>
+					<div class="moneyTree centerTag center border" value="5000">$5000</div>
+					<div class="moneyTree centerTag center border" value="1000">$1000</div>
+					<div class="moneyTree centerTag center border backGround" value="0">$0</div>
+					
+					
+					<div class="bank oval centerTag center border">$0</div>
+				</aside>
+				<!-------------------bank money tree 2--------------->
+				<aside class="bankWrapper border hide" style="color: red">
+					<div class="bank2 moneyTree centerTag center border" value="500000">$500000</div>
+					<div class="bank2 moneyTree centerTag center border" value="125000">$125000</div>
+					<div class="bank2 moneyTree centerTag center border" value="75000">$75000</div>
+					<div class="bank2 moneyTree centerTag center border" value="10000">$10000</div>
+					<div class="bank2 moneyTree centerTag center border" value="1000">$1000</div>
+					<div class="bank2 moneyTree centerTag center border backGround" value="0">$0</div>
+					
+					
+					<div id="bank2" class="bank3 oval centerTag center border">$0</div>
+				</aside>
+				<!------------------question and answer------------->
+				<artilce id="gameWrapper" class="gameWrapper">
+					<div class="question centerTag center border">
+						Question Here
+					</div>
+					<div class="answer answer1 centerTag center border" value="1">Answer one here</div>
+					<br/>
+					<div class="answer answer2 centerTag center border" value="2">Answer two here</div>
+					<br/>
+					<div class="answer answer3 centerTag center border" value="3">Answer three here</div>
+					
+				</artilce>
+			</section>
+			<!------------- start and rule buttons ------------->
+			<section id="gameControl" class="control center">
+				<input type="button" id="start_game" class="button button1" value="START GAME" />
+				<input type="button" class="button button2" value="RULES" id="butt_rules" />
+			</section>
+			
+		</div>
+		
+		<script src="js/script.js"></script>
+		<script type="text/javascript" src="js/quest.json"></script>
+	</body>
+	
 </html>

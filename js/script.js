@@ -571,7 +571,7 @@ beep.src = "Music/gsound.mp3";
 //beep.autoplay = true;
 
 function playm() {
-    beep.autoplay = false;
+    beep.autoplay = ture;
     if (beep.paused) {
 
         beep.play();
