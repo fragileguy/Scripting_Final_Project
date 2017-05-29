@@ -55,17 +55,17 @@ document.getElementById("start_game").onclick = function () {
 
 /*----------validate form---------*/
 function validate() {
-    firstName = info[0].value;
-    LastName = info[1].value;
+    game.firstName = info[0].value;
+    game.LastName = info[1].value;
     var val = true;
     var reg = /^[a-zA-Z ]{1,15}$/
-    if (firstName == "" || firstName == null) {
+    if (game.firstName == "" || game.firstName == null) {
         info[0].setAttribute('placeholder', 'You Must Enter Your First Name');
         val = false;
 
-    } else if (firstName != "" || firstName != null) {
-        if (!reg.test(firstName)) {
-            info[0].setAttribute('placeholder', firstName + 'doesnt match requirments, re-enter');
+    } else if (game.firstName != "" || game.firstName != null) {
+        if (!reg.test(game.firstName)) {
+            info[0].setAttribute('placeholder', game.firstName + 'doesnt match requirments, re-enter');
             error[0].innerHTML = 'Doesnt match requirments, re-enter';
             val = false;
         } else {
@@ -75,7 +75,7 @@ function validate() {
         info[0].setAttribute('placeholder', 'Enter Your First Name');
     }
     if (val) {
-        userName.innerHTML = firstName;
+        userName.innerHTML = game.firstName;
         return val;
     }
 }
@@ -122,7 +122,7 @@ if (typeof (Storage) !== "undefined") {
         userName.innerHTML = "Welcome back, " + localStorage.firstname;
         registered = true;
     } else {
-        alert(firstName);
+
         localStorage.firstname = firstName;
     }
 } else {
@@ -131,6 +131,10 @@ if (typeof (Storage) !== "undefined") {
 }
 /*-------------------game object--------------------------*/
 var game = {
+    firstName: "",
+    lastName: "",
+    age: "",
+    sex: "",
     time: 5,
     x: "",
     question: "",
@@ -223,7 +227,7 @@ var game = {
         if (newQ) {
             this.question = Math.floor((Math.random() * qData.length));
             this.getData();
-            //alert("A question was already asked make new: " + this.question);
+
         }
 
         return this.question;
@@ -251,14 +255,14 @@ var game = {
     /*ifCorrect function accepts two args question from on file (its answer) & userChoice if user choice matches on file, money is added, user levels up, new question shown*/
     ifCorrect: function (question, userChoice) {
         var bank = 0;
-        //        alert("question about to be asked if correct: " + question)
+
         if (question == userChoice) {
 
             console.log("Current level is: " + this.level);
             console.log("^^^^^^^^^^^^^_____^^^^^^^^^^^^");
-            alert('game level round 2: ' + game.level + "And Round: " + this.round);
+
             if (this.round == 1) {
-                alert("game level: "+game.level);
+
                 if (game.moneyHolder[game.level].classList.contains('backGround')) {
                     game.moneyHolder[game.level].classList.remove('backGround');
                     game.moneyHolder[game.level - 1].classList.add('backGround');
@@ -269,12 +273,15 @@ var game = {
                     game.stopTimer();
                     game.youAreCorrect();
 
-
-                    /* game.level = 9
-                     game.moneyLevel*/
-
                     game.level = (parseInt(game.level) - 1);
-                    game.getData();
+                    if(game.takeMoney < 500000){
+                        game.getData();
+                    }else if(game.takeMoney >= 500000){
+                        game.round=2;
+                    }else{
+                        console.log("Error something went wrong");
+                    }
+                    
 
                 } //end if statment
             } else if (this.round == 2) {
@@ -289,7 +296,13 @@ var game = {
                     this.youAreCorrect();
 
                     this.level = (parseInt(this.level) - 1);
-                    game.getData();
+                    if(game.takeMoney < 1000000){
+                        game.getData();
+                    }else if(game.takeMoney >= 1000000){
+                        game.round=3;
+                    }else{
+                        console.log("Error something went wrong");
+                    }
 
                 } //end if statment
             } else if (this.round == 3) {
@@ -298,12 +311,15 @@ var game = {
                 this.roundThreeQu = (parseInt(this.roundThreeQu) - 1);
                 game.getData();
             } else {
-                alert("something went wrong");
+                console.log("something went wrong");
             }
 
 
+        }else if(question != userChoice){
+            if(game.round==3){
+                game.youLose();
+            }
         } else {
-            //alert("wrong bro go home");
             //this.youLose();
             game.readTextFile();
             game.getData();
@@ -364,6 +380,7 @@ var game = {
                     game.level = 5;
                     game.moneyLevel = 6;
                     game.completed = true;
+                    game.startTimer();
                 } else {
 
                     game.youLose();
@@ -372,8 +389,6 @@ var game = {
 
                 game.readTextFile();
                 game.getData();
-                game.startTimer();
-                //game.youLose();
             }
         }, 1000);
 
@@ -382,7 +397,7 @@ var game = {
     },
     stopTimer: function () {
         clearInterval(game.x);
-        
+
     },
     showRoundTwo: function () {
         var bank = document.getElementsByClassName('bankWrapper');
@@ -396,8 +411,8 @@ var game = {
 
             game.moneyHolder = document.getElementsByClassName('bank2');
             game.level = game.moneyHolder.length
-                // alert("Bank 2 " + game.level);
-                //game.moneyHolder[game.level].classList.add('backGround');
+
+            //game.moneyHolder[game.level].classList.add('backGround');
         }
 
     },
@@ -415,22 +430,23 @@ var game = {
     restartGame: function () {
         clearInterval(game.x);
         //game.time = 5;
-        game.x = "";
-        game.question = "";
-        game.choice = "";
-        game.id = "";
-        game.round = 1;
-        document.querySelector('.round').innerHTML = game.round;
-        game.fact = "";
-        game.data = "";
-        game.userMoney = "";
-        game.questionArray = [];
-        game.level = 8;
-        game.moneyLevel = 9;
-        game.completed = false;
-        game.takeMoney = 0;
-        game.showBank();
-        game.hidePopUp=false;
+        /* game.x = "";
+         game.question = "";
+         game.choice = "";
+         game.id = "";
+         game.round = 1;
+         document.querySelector('.round').innerHTML = game.round;
+         game.fact = "";
+         game.data = "";
+         game.userMoney = "";
+         game.questionArray = [];
+         game.level = 8;
+         game.moneyLevel = 9;
+         game.completed = false;
+         game.takeMoney = 0;
+         game.showBank();*/
+         game.hidePopUp = false;
+        location.reload();
     },
     youLose: function () {
         var message = document.querySelector('#messageDis');
@@ -445,13 +461,7 @@ var game = {
         messageheader.innerHTML = "You Lose";
         message.innerHTML = "<h1>You Have Been Deem The Weakest Link<h1>";
         game.hideButtons();
-        game.hidePopUp=true;
-        alert(game.hidePopup)
-        if(game.hidePopUp){
-            hideGame();
-            game.restartGame();
-        }
-        
+        game.hidePopUp = true;
 
     },
     youAreCorrect() {
@@ -478,7 +488,7 @@ var game = {
 
                         if (game.round == 2) {
                             game.moneyHolder[5].classList.add('backGround');
-                            alert("money to put " + game.takeMoney);
+
                             game.bankMoney2.innerHTML = '$' + game.takeMoney;
                             game.level = 5;
                             game.moneyLevel = 6;
@@ -490,7 +500,7 @@ var game = {
                             game.moneyLevel = 9;
                             game.userMoney = "";
                         } else {
-                            alert("Error with round");
+                            console.log("Error with round");
                         }
 
                     } //end if yes
@@ -504,9 +514,9 @@ var game = {
                 }
             }
         } else if (game.round == 3) {
-            message.innerHTML = "You are playing for $" + game.takeMoney+"\n"+game.roundThreeQu+" Question(s) left to win";
-            if(game.roundThreeQu==0){
-                message.innerHTML="You have won $"+game.takeMoney;
+            message.innerHTML = "You are playing for $" + game.takeMoney + "\n" + game.roundThreeQu + " Question(s) left to win";
+            if (game.roundThreeQu == 0) {
+                message.innerHTML = "You have won $" + game.takeMoney;
                 game.restartGame();
             }
         } else {
@@ -533,14 +543,14 @@ var game = {
         }
 
     },
-    showBank:function(){
+    showBank: function () {
         var bank = document.getElementsByClassName('bankWrapper');
         if (!bank[1].classList.contains('hide')) {
             bank[0].classList.remove('hide');
             bank[1].classList.add('hide');
         }
     },
-    hideBank:function(){
+    hideBank: function () {
         var bank = document.getElementsByClassName('bankWrapper');
         if (!bank[0].classList.contains('hide')) {
             bank[0].classList.add('hide');
@@ -554,11 +564,16 @@ var game = {
 var span = document.getElementsByClassName('close')[0];
 span.onclick = function () {
     hidePopup();
-    
+    if (game.hidePopUp) {
+        hideGame();
+        game.restartGame();
+    }
+
 }
 window.onclick = function (event) {
     if (event.target == game.popup) {
         game.popup.classList.add('hide');
+
     }
 }
 
@@ -566,10 +581,17 @@ window.onclick = function (event) {
 function hidePopup() {
     if (!game.popup.classList.contains('hide')) {
         game.popup.classList.add('hide');
-        game.startTimer();
-        // hideGame();
+        if(!game.hidePopUp){
+             game.startTimer();
+        }else if(game.hidePopUp){
+            game.stopTimer();
+        }
+        
+       
+//        hideGame();
     }
 }
+
 /*---------------AUDIO SETTINGS-----------------*/
 var beep = new Audio;
 beep.src = "Music/gsound.mp3";
