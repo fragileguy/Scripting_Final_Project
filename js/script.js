@@ -135,7 +135,7 @@ var game = {
     lastName: "",
     age: "",
     sex: "",
-    time: 5,
+    time: 120,
     x: "",
     question: "",
     choice: "",
@@ -161,6 +161,7 @@ var game = {
     bankMoney: document.getElementsByClassName('response'),
     option: document.getElementsByClassName('option'),
     hidePopUp: false,
+    bank1: document.getElementsByClassName('bankWrapper'),
 
     /*function using http protocol to get and reads json file raw stored locally, this function is
 	used by the getData function to convert json to readable data by javascript*/
@@ -258,33 +259,35 @@ var game = {
 
         if (question == userChoice) {
 
-            console.log("Current level is: " + this.level);
+            console.log("Current level is: " + game.level);
             console.log("^^^^^^^^^^^^^_____^^^^^^^^^^^^");
 
             if (this.round == 1) {
 
                 if (game.moneyHolder[game.level].classList.contains('backGround')) {
                     game.moneyHolder[game.level].classList.remove('backGround');
-                    game.moneyHolder[game.level - 1].classList.add('backGround');
-                    game.moneyLevel = game.moneyLevel - 1;
-
+                    // alert("before: " + game.level)
+                    if (game.level > 0) {
+                        game.moneyHolder[game.level - 1].classList.add('backGround');
+                        game.moneyLevel = game.moneyLevel - 1;
+                    } else {
+                        game.moneyHolder[game.level].classList.add('backGround');
+                        game.moneyLevel = game.moneyLevel - 1;
+                    }
                     game.userMoney = game.moneyHolder[game.moneyLevel].getAttribute('value');
 
                     game.stopTimer();
                     game.youAreCorrect();
 
                     game.level = (parseInt(game.level) - 1);
-                    if(game.takeMoney < 500000){
-                        game.getData();
-                    }else if(game.takeMoney >= 500000){
-                        game.round=2;
-                    }else{
-                        console.log("Error something went wrong");
-                    }
-                    
-
+                    game.getData();
                 } //end if statment
             } else if (this.round == 2) {
+                alert("Game level "+this.level+" and money level "+this.moneyLevel);
+                if(this.level >= 8){
+                    this.level=5;
+                    this.moneyLevel=6;
+                }
                 if (game.bank2[this.level].classList.contains('backGround')) {
                     game.bank2[this.level].classList.remove('backGround');
                     game.bank2[this.level - 1].classList.add('backGround');
@@ -296,11 +299,11 @@ var game = {
                     this.youAreCorrect();
 
                     this.level = (parseInt(this.level) - 1);
-                    if(game.takeMoney < 1000000){
+                    if (game.takeMoney < 1000000) {
                         game.getData();
-                    }else if(game.takeMoney >= 1000000){
-                        game.round=3;
-                    }else{
+                    } else if (game.takeMoney >= 1000000) {
+                        game.round = 3;
+                    } else {
                         console.log("Error something went wrong");
                     }
 
@@ -315,15 +318,22 @@ var game = {
             }
 
 
-        }else if(question != userChoice){
-            if(game.round==3){
-                game.youLose();
-            }
+        } else if (game.round == 3 && question != userChoice) {
+
+            game.youLose();
+
         } else {
             //this.youLose();
+            if(game.round==1){
+                game.level=8;
+                game.moneyLevel=9;
+            }else{
+                game.level=5;
+                game.moneyLevel=6;
+            }
             game.readTextFile();
             game.getData();
-
+            
         }
     }, //end function 
     /*ifQuestionAsked accepts two args 'asked' which is the question about to be displayed includes method is used to compare existence */
@@ -376,15 +386,9 @@ var game = {
                     game.time = 120;
                 } else if (!game.completed) {
                     game.showRoundTwo();
-                    game.time = 5;
-                    game.level = 5;
-                    game.moneyLevel = 6;
-                    game.completed = true;
                     game.startTimer();
                 } else {
-
                     game.youLose();
-
                 }
 
                 game.readTextFile();
@@ -409,9 +413,13 @@ var game = {
             game.round = 2;
             document.querySelector('.round').innerHTML = game.round;
 
-            game.moneyHolder = document.getElementsByClassName('bank2');
-            game.level = game.moneyHolder.length
-
+            /*game.moneyHolder = document.getElementsByClassName('bank2');*/
+            //game.level = game.moneyHolder.length;
+            game.time = 90;
+            game.level = 5;
+            game.moneyLevel = 6;
+            game.completed = true;
+            //game.startTimer();
             //game.moneyHolder[game.level].classList.add('backGround');
         }
 
@@ -445,7 +453,7 @@ var game = {
          game.completed = false;
          game.takeMoney = 0;
          game.showBank();*/
-         game.hidePopUp = false;
+        game.hidePopUp = false;
         location.reload();
     },
     youLose: function () {
@@ -484,8 +492,10 @@ var game = {
                         game.hideButtons();
                         game.takeMoney = parseInt(game.takeMoney);
                         game.takeMoney += parseInt(game.userMoney);
+                        if(game.level <= -1){
+                            game.level=0;
+                        }
                         game.moneyHolder[game.level].classList.remove('backGround');
-
                         if (game.round == 2) {
                             game.moneyHolder[5].classList.add('backGround');
 
@@ -494,8 +504,18 @@ var game = {
                             game.moneyLevel = 6;
                             game.userMoney = "";
                         } else if (game.round == 1) {
+                            if (game.takeMoney >= 1000) {
+                                game.showRoundTwo();
+                                game.level = 5;
+                                alert("yes");
+                            } else {
+                                alert("no");
+                            }
                             game.moneyBank[0].innerHTML = '$' + game.takeMoney;
-                            game.moneyHolder[8].classList.add('backGround');
+                            if(!game.bank1[0].classList.contains('hide')){
+                              game.moneyHolder[8].classList.add('backGround');
+                            }
+                            
                             game.level = 8;
                             game.moneyLevel = 9;
                             game.userMoney = "";
@@ -581,14 +601,14 @@ window.onclick = function (event) {
 function hidePopup() {
     if (!game.popup.classList.contains('hide')) {
         game.popup.classList.add('hide');
-        if(!game.hidePopUp){
-             game.startTimer();
-        }else if(game.hidePopUp){
+        if (!game.hidePopUp) {
+            game.startTimer();
+        } else if (game.hidePopUp) {
             game.stopTimer();
         }
-        
-       
-//        hideGame();
+
+
+        //        hideGame();
     }
 }
 
