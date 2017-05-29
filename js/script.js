@@ -33,8 +33,8 @@ document.getElementById("butt_rules").onclick = function () {
 }
 document.getElementById("start_game").onclick = function () {
 // && registered
-        if (validate() ) {
-		alert("what goign on");
+        if (validate() || registered) {
+
             showGame();
             game.readTextFile();
             game.getData();
@@ -74,7 +74,7 @@ function validate() {
 	if (reg.test(game.LastName)) {
         val = true;
     }else{
-	info[1].setAttribute('placeholder', 'You Must Enter Your First Name');
+	info[1].setAttribute('placeholder', 'You Must Enter Your Last Name');
 	val=false;
 	}
 	
@@ -304,7 +304,7 @@ var game = {
                     game.getData();
                 } //end if statment
             } else if (this.round == 2) {
-                alert("Game level " + this.level + " and money level " + this.moneyLevel);
+               
                 if (this.level >= 8) {
                     this.level = 5;
                     this.moneyLevel = 6;
@@ -404,7 +404,7 @@ var game = {
 
                 if (game.completed && game.takeMoney != 0) {
                     game.showRoundThree();
-                    game.time = 120;
+                    game.time = 60;
                 } else if (!game.completed) {
                     game.showRoundTwo();
                     game.startTimer();
@@ -416,8 +416,6 @@ var game = {
                 game.getData();
             }
         }, 1000);
-
-
 
     },
     stopTimer: function () {
@@ -433,7 +431,6 @@ var game = {
             bankInfo.innerHTML = "$" + game.takeMoney;
             game.round = 2;
             document.querySelector('.round').innerHTML = game.round;
-
 
             game.time = 90;
             game.level = 5;
@@ -517,7 +514,7 @@ var game = {
                         }
                         game.moneyHolder[game.level].classList.remove('backGround');
                         if (game.round == 2) {
-                            if (game.takeMoney >= 1000) {
+                            if (game.takeMoney >= 1000000) {
                                 game.showRoundThree();
                             } else {
 
@@ -530,7 +527,7 @@ var game = {
                             game.userMoney = "";
 
                         } else if (game.round == 1) {
-                            if (game.takeMoney >= 1000) {
+                            if (game.takeMoney >= 500000) {
                                 game.showRoundTwo();
                                 game.level = 5;
                             } else {
@@ -562,6 +559,7 @@ var game = {
             message.innerHTML = "You are playing for $" + game.takeMoney + "\n" + game.roundThreeQu + " Question(s) left to win";
             if (game.roundThreeQu == 1) {
                 message.innerHTML = "You have won $" + game.takeMoney;
+                
                 game.restartGame();
             }
         } else {
@@ -646,7 +644,7 @@ beep.src = "Music/gsound.mp3";
 //beep.autoplay = true;
 
 function playm() {
-    beep.autoplay = ture;
+    beep.autoplay = true;
     if (beep.paused) {
 
         beep.play();
