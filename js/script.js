@@ -32,8 +32,9 @@ document.getElementById("butt_rules").onclick = function () {
     } //end else if
 }
 document.getElementById("start_game").onclick = function () {
-
-        if (validate() || registered) {
+// && registered
+        if (validate() ) {
+		alert("what goign on");
             showGame();
             game.readTextFile();
             game.getData();
@@ -51,33 +52,43 @@ document.getElementById("start_game").onclick = function () {
 
         var correct = document.getElementsByClassName("answer");
 
-    } //end onclick function start game
+} //end onclick function start game
 
 /*----------validate form---------*/
 function validate() {
+	
     game.firstName = info[0].value;
     game.LastName = info[1].value;
     var val = true;
+	
     var reg = /^[a-zA-Z ]{1,15}$/
-    if (game.firstName == "" || game.firstName == null) {
-        info[0].setAttribute('placeholder', 'You Must Enter Your First Name');
-        val = false;
-
-    } else if (game.firstName != "" || game.firstName != null) {
-        if (!reg.test(game.firstName)) {
-            info[0].setAttribute('placeholder', game.firstName + 'doesnt match requirments, re-enter');
-            error[0].innerHTML = 'Doesnt match requirments, re-enter';
-            val = false;
-        } else {
-            info[0].setAttribute('placeholder', 'Enter Your First Name');
-        }
-    } else {
-        info[0].setAttribute('placeholder', 'Enter Your First Name');
-    }
-    if (val) {
-        userName.innerHTML = game.firstName;
-        return val;
-    }
+	
+    if (reg.test(game.firstName)) {
+        val = true;
+    }else{
+	info[0].setAttribute('placeholder', 'You Must Enter Your First Name');
+	val=false;
+	}
+	
+	if (reg.test(game.LastName)) {
+        val = true;
+    }else{
+	info[1].setAttribute('placeholder', 'You Must Enter Your First Name');
+	val=false;
+	}
+	
+	
+	
+	
+	
+	
+	
+	return val;
+	
+    // if (val) {
+        // userName.innerHTML = game.firstName;
+        // return val;
+    // }
 }
 
 /*------shows game--------------*/
