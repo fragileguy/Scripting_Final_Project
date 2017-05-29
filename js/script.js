@@ -47,6 +47,7 @@ document.getElementById("start_game").onclick = function () {
                 rules.classList.add('hide');
             }
 
+
         }
 
 
@@ -124,7 +125,6 @@ function hideGame() {
 window.onload = function () {
 
 };
-
 /*-------------local storage--------------*/
 if (typeof (Storage) !== "undefined") {
     // Code for localStorage/sessionStorage.
@@ -134,12 +134,22 @@ if (typeof (Storage) !== "undefined") {
         registered = true;
     } else {
 
-        localStorage.firstname = firstName;
+        localStorage.firstname = game.firstName;
+        localStorage.lastname = game.lastName;
+        localStorage.time = game.time;
+        localStorage.round = game.round;
+        localStorage.userbank = game.takeMoney;
+        localStorage.level = game.level;
+        localStorage.moneylevel = game.moneyLevel;
+        localStorage.question = game.question;
+        localStorage.questionArr = game.questionArray;
+
     }
 } else {
     // Sorry! No Web Storage support..
     console.log("Sorry, your browser does not support web storage...");
 }
+
 /*-------------------game object--------------------------*/
 var game = {
     firstName: "",
@@ -294,10 +304,10 @@ var game = {
                     game.getData();
                 } //end if statment
             } else if (this.round == 2) {
-                alert("Game level "+this.level+" and money level "+this.moneyLevel);
-                if(this.level >= 8){
-                    this.level=5;
-                    this.moneyLevel=6;
+                alert("Game level " + this.level + " and money level " + this.moneyLevel);
+                if (this.level >= 8) {
+                    this.level = 5;
+                    this.moneyLevel = 6;
                 }
                 if (game.bank2[this.level].classList.contains('backGround')) {
                     game.bank2[this.level].classList.remove('backGround');
@@ -335,16 +345,16 @@ var game = {
 
         } else {
             //this.youLose();
-            if(game.round==1){
-                game.level=8;
-                game.moneyLevel=9;
-            }else{
-                game.level=5;
-                game.moneyLevel=6;
+            if (game.round == 1) {
+                game.level = 8;
+                game.moneyLevel = 9;
+            } else {
+                game.level = 5;
+                game.moneyLevel = 6;
             }
             game.readTextFile();
             game.getData();
-            
+
         }
     }, //end function 
     /*ifQuestionAsked accepts two args 'asked' which is the question about to be displayed includes method is used to compare existence */
@@ -424,14 +434,13 @@ var game = {
             game.round = 2;
             document.querySelector('.round').innerHTML = game.round;
 
-            /*game.moneyHolder = document.getElementsByClassName('bank2');*/
-            //game.level = game.moneyHolder.length;
+
             game.time = 90;
             game.level = 5;
             game.moneyLevel = 6;
             game.completed = true;
             //game.startTimer();
-            //game.moneyHolder[game.level].classList.add('backGround');
+
         }
 
     },
@@ -503,30 +512,35 @@ var game = {
                         game.hideButtons();
                         game.takeMoney = parseInt(game.takeMoney);
                         game.takeMoney += parseInt(game.userMoney);
-                        if(game.level <= -1){
-                            game.level=0;
+                        if (game.level <= -1) {
+                            game.level = 0;
                         }
                         game.moneyHolder[game.level].classList.remove('backGround');
                         if (game.round == 2) {
+                            if (game.takeMoney >= 1000) {
+                                game.showRoundThree();
+                            } else {
+
+                            }
                             game.moneyHolder[5].classList.add('backGround');
 
                             game.bankMoney2.innerHTML = '$' + game.takeMoney;
                             game.level = 5;
                             game.moneyLevel = 6;
                             game.userMoney = "";
+
                         } else if (game.round == 1) {
                             if (game.takeMoney >= 1000) {
                                 game.showRoundTwo();
                                 game.level = 5;
-                                alert("yes");
                             } else {
-                                alert("no");
+
                             }
                             game.moneyBank[0].innerHTML = '$' + game.takeMoney;
-                            if(!game.bank1[0].classList.contains('hide')){
-                              game.moneyHolder[8].classList.add('backGround');
+                            if (!game.bank1[0].classList.contains('hide')) {
+                                game.moneyHolder[8].classList.add('backGround');
                             }
-                            
+
                             game.level = 8;
                             game.moneyLevel = 9;
                             game.userMoney = "";
@@ -546,7 +560,7 @@ var game = {
             }
         } else if (game.round == 3) {
             message.innerHTML = "You are playing for $" + game.takeMoney + "\n" + game.roundThreeQu + " Question(s) left to win";
-            if (game.roundThreeQu == 0) {
+            if (game.roundThreeQu == 1) {
                 message.innerHTML = "You have won $" + game.takeMoney;
                 game.restartGame();
             }
